@@ -1,0 +1,792 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 4,
+    "total": 4,
+    "workspacePrefix": "E:\\开发项目\\fast-vue3"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "create-fast-vue3",
+      "type": "module",
+      "version": "0.0.13",
+      "description": "a easy way to create vue3 project based of fast-vue3 template",
+      "bin": {
+        "create-fast-vue3": "outfile.cjs"
+      },
+      "files": [
+        "outfile.cjs"
+      ],
+      "scripts": {
+        "format": "prettier --write .",
+        "build": "esbuild --bundle index.js --format=cjs --platform=node --outfile=outfile.cjs"
+      },
+      "keywords": [
+        "vue3",
+        "vite",
+        "fast-vue3"
+      ],
+      "homepage": "https://github.com/study-vue3/fast-vue3/tree/main/packages/create-fast-vue3#readme",
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/study-vue3/fast-vue3.git",
+        "directory": "packages/create-fast-vue3"
+      },
+      "author": "liulei",
+      "license": "MIT",
+      "devDependencies": {
+        "esbuild": "^0.14.14",
+        "git-clone": "^0.2.0",
+        "husky": "^7.0.4",
+        "kolorist": "^1.5.1",
+        "lint-staged": "^12.3.2",
+        "minimist": "^1.2.5",
+        "ora": "^5.0",
+        "prettier": "^2.5.1",
+        "prompts": "^2.4.2"
+      },
+      "lint-staged": {
+        "*.{js,json}": [
+          "prettier --write"
+        ]
+      }
+    },
+    "prefix": "E:\\开发项目\\fast-vue3\\packages\\create-fast-vue3"
+  },
+  "2 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "juejin-maths-game",
+      "version": "1.0.0",
+      "description": "掘金数字谜题游戏算法解析",
+      "main": "./src/index",
+      "homepage": "https://github.com/study-vue3/fast-vue3/tree/main/packages/juejin-maths-game",
+      "scripts": {
+        "start": "node ./src/index",
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "仅供学习交流",
+      "license": "MIT",
+      "dependencies": {
+        "async": "^3.2.3",
+        "axios": "^0.21.1",
+        "colors": "^1.4.0",
+        "dayjs": "^1.10.6",
+        "dotenv": "^16.0.0",
+        "got": "^11.8.2",
+        "jsonwebtoken": "^8.5.1",
+        "node-schedule": "^2.1.0"
+      }
+    },
+    "prefix": "E:\\开发项目\\fast-vue3\\packages\\juejin-maths-game"
+  },
+  "3 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "maths-juejin",
+      "version": "0.1.0",
+      "private": true,
+      "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+      },
+      "dependencies": {
+        "axios": "^0.24.0",
+        "core-js": "^3.6.5",
+        "element-ui": "^2.15.6",
+        "jsonwebtoken": "^8.5.1",
+        "less-loader": "^6.0.0",
+        "vue": "^2.6.11"
+      },
+      "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "less": "^4.1.2",
+        "vue-template-compiler": "^2.6.11"
+      },
+      "eslintConfig": {
+        "root": true,
+        "env": {
+          "node": true
+        },
+        "extends": [
+          "plugin:vue/essential",
+          "eslint:recommended"
+        ],
+        "parserOptions": {
+          "parser": "babel-eslint"
+        },
+        "rules": {}
+      },
+      "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+      ]
+    },
+    "prefix": "E:\\开发项目\\fast-vue3\\packages\\juejin-maths-vue"
+  },
+  "4 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "fast-vue3",
+      "version": "0.1.2",
+      "author": "扫地盲僧",
+      "scripts": {
+        "dev": "vite --mode development",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "build:dev": "vite build --mode development",
+        "build:pro": "vite build --mode production",
+        "serve": "vite preview",
+        "plop": "plop",
+        "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
+        "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
+        "lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+        "lint:lint-staged": "lint-staged",
+        "prepare": "husky install",
+        "deps": "yarn upgrade-interactive --latest"
+      },
+      "dependencies": {
+        "@element-plus/icons-vue": "^2.0.6",
+        "@vueuse/components": "^8.7.5",
+        "@vueuse/core": "^8.7.5",
+        "axios": "^0.27.2",
+        "element-plus": "^2.2.6",
+        "mockjs": "^1.1.0",
+        "pinia": "^2.0.14",
+        "plop": "^3.1.1",
+        "qs": "^6.10.5",
+        "vue": "^3.2.37",
+        "vue-router": "^4.0.16"
+      },
+      "devDependencies": {
+        "@types/node": "^18.0.0",
+        "@types/nprogress": "^0.2.0",
+        "@types/qs": "^6.9.7",
+        "@typescript-eslint/eslint-plugin": "^5.29.0",
+        "@typescript-eslint/parser": "^5.29.0",
+        "@vitejs/plugin-vue": "^2.3.3",
+        "@vitejs/plugin-vue-jsx": "^1.3.10",
+        "autoprefixer": "^10.4.7",
+        "eslint": "^8.18.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-define-config": "^1.5.1",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-vue": "^9.1.1",
+        "husky": "^8.0.1",
+        "import": "^0.0.6",
+        "less": "^4.1.3",
+        "less-loader": "^11.0.0",
+        "lint-staged": "^13.0.3",
+        "nprogress": "^0.2.0",
+        "postcss": "^8.4.14",
+        "postcss-html": "^1.4.1",
+        "postcss-less": "^6.0.0",
+        "postcss-px-to-viewport": "^1.1.1",
+        "prettier": "^2.7.1",
+        "rollup-plugin-visualizer": "^5.6.0",
+        "stylelint": "^14.9.1",
+        "stylelint-config-prettier": "^9.0.3",
+        "stylelint-config-recommended": "^8.0.0",
+        "stylelint-config-recommended-vue": "^1.4.0",
+        "stylelint-config-standard": "^26.0.0",
+        "stylelint-order": "^5.0.0",
+        "typescript": "4.7.4",
+        "unplugin-auto-import": "^0.9.1",
+        "unplugin-icons": "^0.14.5",
+        "unplugin-vue-components": "^0.19.9",
+        "vite": "^2.9.12",
+        "vite-plugin-compression": "^0.5.1",
+        "vite-plugin-html": "^3.2.0",
+        "vite-plugin-imagemin": "^0.6.1",
+        "vite-plugin-mkcert": "1.6.0",
+        "vite-plugin-mock": "^2.9.6",
+        "vite-plugin-pages": "^0.24.2",
+        "vite-plugin-progress": "^0.0.3",
+        "vite-plugin-restart": "^0.1.1",
+        "vite-plugin-style-import": "^2.0.0",
+        "vite-plugin-svg-icons": "^2.0.1",
+        "vite-plugin-vue-setup-extend": "^0.4.0",
+        "vite-plugin-windicss": "^1.8.4",
+        "vue-tsc": "^0.38.1"
+      },
+      "resolutions": {
+        "bin-wrapper": "npm:bin-wrapper-china",
+        "rollup": "^2.56.3",
+        "gifsicle": "5.2.0"
+      },
+      "husky": {
+        "hooks": {
+          "pre-commit": "lint-staged"
+        }
+      },
+      "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+          "eslint --fix",
+          "prettier --write"
+        ],
+        "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
+          "prettier --write--parser json"
+        ],
+        "package.json": [
+          "prettier --write"
+        ],
+        "*.vue": [
+          "eslint --fix",
+          "prettier --write",
+          "stylelint --fix"
+        ],
+        "*.{scss,less,styl,html}": [
+          "stylelint --fix",
+          "prettier --write"
+        ],
+        "*.md": [
+          "prettier --write"
+        ]
+      }
+    },
+    "prefix": "E:\\开发项目\\fast-vue3"
+  },
+  "5 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "E:\\.pnpm-store\\v3",
+    "virtualStoreDir": "E:\\开发项目\\fast-vue3\\node_modules\\.pnpm"
+  },
+  "6 debug pnpm:stage": {
+    "prefix": "E:\\开发项目\\fast-vue3",
+    "stage": "resolution_started"
+  },
+  "7 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/esbuild/0.14.21",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "esbuild",
+      "rawSpec": "^0.14.14"
+    }
+  },
+  "8 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/git-clone/0.2.0",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "git-clone",
+      "rawSpec": "^0.2.0"
+    }
+  },
+  "9 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/husky/7.0.4",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "husky",
+      "rawSpec": "^7.0.4"
+    }
+  },
+  "10 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/kolorist/1.5.1",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "kolorist",
+      "rawSpec": "^1.5.1"
+    }
+  },
+  "11 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/lint-staged/12.3.4",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "lint-staged",
+      "rawSpec": "^12.3.2"
+    }
+  },
+  "12 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/minimist/1.2.5",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "minimist",
+      "rawSpec": "^1.2.5"
+    }
+  },
+  "13 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/ora/5.4.1",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "ora",
+      "rawSpec": "^5.0"
+    }
+  },
+  "14 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/prettier/2.5.1",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "prettier",
+      "rawSpec": "^2.5.1"
+    }
+  },
+  "15 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/prompts/2.4.2",
+    "wanted": {
+      "dependentId": "packages/create-fast-vue3",
+      "name": "prompts",
+      "rawSpec": "^2.4.2"
+    }
+  },
+  "16 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/async/3.2.3",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "async",
+      "rawSpec": "^3.2.3"
+    }
+  },
+  "17 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/axios/0.21.4",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "axios",
+      "rawSpec": "^0.21.1"
+    }
+  },
+  "18 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/colors/1.4.0",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "colors",
+      "rawSpec": "^1.4.0"
+    }
+  },
+  "19 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/dayjs/1.10.7",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "dayjs",
+      "rawSpec": "^1.10.6"
+    }
+  },
+  "20 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/dotenv/16.0.0",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "dotenv",
+      "rawSpec": "^16.0.0"
+    }
+  },
+  "21 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/got/11.8.3",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "got",
+      "rawSpec": "^11.8.2"
+    }
+  },
+  "22 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/jsonwebtoken/8.5.1",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "jsonwebtoken",
+      "rawSpec": "^8.5.1"
+    }
+  },
+  "23 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/node-schedule/2.1.0",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-game",
+      "name": "node-schedule",
+      "rawSpec": "^2.1.0"
+    }
+  },
+  "24 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/@vue/cli-plugin-babel/4.5.17",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "@vue/cli-plugin-babel",
+      "rawSpec": "~4.5.0"
+    }
+  },
+  "25 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/@vue/cli-plugin-eslint/4.5.17",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "@vue/cli-plugin-eslint",
+      "rawSpec": "~4.5.0"
+    }
+  },
+  "26 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/@vue/cli-service/4.5.17",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "@vue/cli-service",
+      "rawSpec": "~4.5.0"
+    }
+  },
+  "27 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/babel-eslint/10.1.0",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "babel-eslint",
+      "rawSpec": "^10.1.0"
+    }
+  },
+  "28 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/eslint/6.8.0",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "eslint",
+      "rawSpec": "^6.7.2"
+    }
+  },
+  "29 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/eslint-plugin-vue/6.2.2",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "eslint-plugin-vue",
+      "rawSpec": "^6.2.2"
+    }
+  },
+  "30 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/less/4.1.2",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "less",
+      "rawSpec": "^4.1.2"
+    }
+  },
+  "31 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/vue-template-compiler/2.6.14",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "vue-template-compiler",
+      "rawSpec": "^2.6.11"
+    }
+  },
+  "32 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/axios/0.24.0",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "axios",
+      "rawSpec": "^0.24.0"
+    }
+  },
+  "33 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/core-js/3.21.1",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "core-js",
+      "rawSpec": "^3.6.5"
+    }
+  },
+  "34 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/element-ui/2.15.6",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "element-ui",
+      "rawSpec": "^2.15.6"
+    }
+  },
+  "35 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/jsonwebtoken/8.5.1",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "jsonwebtoken",
+      "rawSpec": "^8.5.1"
+    }
+  },
+  "36 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/less-loader/6.2.0",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "less-loader",
+      "rawSpec": "^6.0.0"
+    }
+  },
+  "37 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/vue/2.6.14",
+    "wanted": {
+      "dependentId": "packages/juejin-maths-vue",
+      "name": "vue",
+      "rawSpec": "^2.6.11"
+    }
+  },
+  "38 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/@types/nprogress/0.2.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@types/nprogress",
+      "rawSpec": "^0.2.0"
+    }
+  },
+  "39 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/@types/qs/6.9.7",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@types/qs",
+      "rawSpec": "^6.9.7"
+    }
+  },
+  "40 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/@vitejs/plugin-vue-jsx/1.3.10",
+    "wanted": {
+      "dependentId": ".",
+      "name": "@vitejs/plugin-vue-jsx",
+      "rawSpec": "^1.3.10"
+    }
+  },
+  "41 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/eslint-config-prettier/8.5.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-config-prettier",
+      "rawSpec": "^8.5.0"
+    }
+  },
+  "42 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/eslint-plugin-prettier/4.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-plugin-prettier",
+      "rawSpec": "^4.0.0"
+    }
+  },
+  "43 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/import/0.0.6",
+    "wanted": {
+      "dependentId": ".",
+      "name": "import",
+      "rawSpec": "^0.0.6"
+    }
+  },
+  "44 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/nprogress/0.2.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "nprogress",
+      "rawSpec": "^0.2.0"
+    }
+  },
+  "45 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/postcss-px-to-viewport/1.1.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "postcss-px-to-viewport",
+      "rawSpec": "^1.1.1"
+    }
+  },
+  "46 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/rollup-plugin-visualizer/5.6.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "rollup-plugin-visualizer",
+      "rawSpec": "^5.6.0"
+    }
+  },
+  "47 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/vite-plugin-compression/0.5.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "vite-plugin-compression",
+      "rawSpec": "^0.5.1"
+    }
+  },
+  "48 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/vite-plugin-html/3.2.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "vite-plugin-html",
+      "rawSpec": "^3.2.0"
+    }
+  },
+  "49 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/vite-plugin-mock/2.9.6",
+    "wanted": {
+      "dependentId": ".",
+      "name": "vite-plugin-mock",
+      "rawSpec": "^2.9.6"
+    }
+  },
+  "50 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/vite-plugin-restart/0.1.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "vite-plugin-restart",
+      "rawSpec": "^0.1.1"
+    }
+  },
+  "51 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/vite-plugin-style-import/2.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "vite-plugin-style-import",
+      "rawSpec": "^2.0.0"
+    }
+  },
+  "52 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/vite-plugin-svg-icons/2.0.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "vite-plugin-svg-icons",
+      "rawSpec": "^2.0.1"
+    }
+  },
+  "53 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npm.taobao.org/axios/0.27.2",
+    "wanted": {
+      "dependentId": ".",
+      "name": "axios",
+      "rawSpec": "^0.27.2"
+    }
+  },
+  "54 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/mockjs/1.1.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "mockjs",
+      "rawSpec": "^1.1.0"
+    }
+  },
+  "55 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/husky/7.0.4",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "found_in_store"
+  },
+  "56 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/husky/7.0.4",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "57 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/lint-staged/12.3.4",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "found_in_store"
+  },
+  "58 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/lint-staged/12.3.4",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "59 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/esbuild/0.14.21",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "found_in_store"
+  },
+  "60 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/esbuild/0.14.21",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "61 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/kolorist/1.5.1",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "found_in_store"
+  },
+  "62 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/kolorist/1.5.1",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "63 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/ora/5.4.1",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "found_in_store"
+  },
+  "64 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/ora/5.4.1",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "65 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/minimist/1.2.5",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "found_in_store"
+  },
+  "66 debug pnpm:progress": {
+    "packageId": "registry.npm.taobao.org/minimist/1.2.5",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "67 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/less-loader/11.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "less-loader",
+      "rawSpec": "^11.0.0"
+    }
+  },
+  "68 debug pnpm:progress": {
+    "packageId": "registry.npmmirror.com/less-loader/11.0.0",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "69 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/postcss-less/6.0.0",
+    "wanted": {
+      "dependentId": ".",
+      "name": "postcss-less",
+      "rawSpec": "^6.0.0"
+    }
+  },
+  "70 debug pnpm:progress": {
+    "packageId": "registry.npmmirror.com/postcss-less/6.0.0",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "71 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/eslint-define-config/1.5.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "eslint-define-config",
+      "rawSpec": "^1.5.1"
+    }
+  },
+  "72 debug pnpm:progress": {
+    "packageId": "registry.npmmirror.com/eslint-define-config/1.5.1",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "73 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/postcss-html/1.4.1",
+    "wanted": {
+      "dependentId": ".",
+      "name": "postcss-html",
+      "rawSpec": "^1.4.1"
+    }
+  },
+  "74 debug pnpm:progress": {
+    "packageId": "registry.npmmirror.com/postcss-html/1.4.1",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "75 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmmirror.com/lint-staged/13.0.3",
+    "wanted": {
+      "dependentId": ".",
+      "name": "lint-staged",
+      "rawSpec": "^13.0.3"
+    }
+  },
+  "76 debug pnpm:progress": {
+    "packageId": "registry.npmmirror.com/lint-staged/13.0.3",
+    "requester": "E:\\开发项目\\fast-vue3",
+    "status": "resolved"
+  },
+  "77 warn pnpm:install-check": {
+    "message": "Unsupported engine for registry.npmmirror.com/eslint/8.18.0: wanted: {\"node\":\"^12.22.0 || ^14.17.0 || >=16.0.0\"} (current: {\"node\":\"v14.15.4\",\"pnpm\":\"7.4.1\"})",
+    "prefix": "E:\\开发项目\\fast-vue3"
+  },
+  "78 error pnpm": {
+    "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+    "packageId": "registry.npmmirror.com/eslint/8.18.0",
+    "wanted": {
+      "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
+    },
+    "current": {
+      "node": "v14.15.4",
+      "pnpm": "7.4.1"
+    },
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "Unsupported engine for registry.npmmirror.com/eslint/8.18.0: wanted: {\"node\":\"^12.22.0 || ^14.17.0 || >=16.0.0\"} (current: {\"node\":\"v14.15.4\",\"pnpm\":\"7.4.1\"})",
+      "code": "ERR_PNPM_UNSUPPORTED_ENGINE",
+      "stack": "pnpm: Unsupported engine for registry.npmmirror.com/eslint/8.18.0: wanted: {\"node\":\"^12.22.0 || ^14.17.0 || >=16.0.0\"} (current: {\"node\":\"v14.15.4\",\"pnpm\":\"7.4.1\"})\n    at checkEngine (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:43094:16)\n    at checkPackage (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:43677:74)\n    at packageIsInstallable (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:43647:20)\n    at resolveAndFetch (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:93238:117)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\n    at async resolveDependency (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:122282:23)\n    at async resolveDependenciesOfDependency (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:122121:39)\n    at async Promise.all (index 8)\n    at async resolveDependencies (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:122050:29)\n    at async resolveRootDependencies (D:\\nvm\\v14.15.4\\node_modules\\pnpm\\dist\\pnpm.cjs:122016:25)"
+    }
+  }
+}
