@@ -41,16 +41,16 @@
             <router-link
               to="/"
               class="mr-3 flex-none w-[2.0625rem] md:w-auto leading-6 dark:text-slate-200"
-              >K</router-link
+              >{{ appStore.projectName }}</router-link
             >
             <div class="relative items-center hidden ml-auto lg:flex">
               <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
                 <ul class="flex space-x-8">
-                  <li>
+                  <!-- <li>
                     <router-link to="/demo" class="hover:text-sky-500 dark:hover:text-sky-400"
                       >GithubDemo</router-link
                     >
-                  </li>
+                  </li> -->
                 </ul>
               </nav>
               <div

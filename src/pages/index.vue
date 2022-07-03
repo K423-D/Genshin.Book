@@ -9,28 +9,24 @@
   const data = ref(framework);
 </script>
 <template>
-  <div class="dark:text-slate-400 dark:bg-slate-900">
+  <div class="dark:text-slate-400 dark:bg-slate-900 min-h-screen">
     <Header />
     <main class="max-w-5xl px-4 mx-auto pb-22 sm:px-6 md:px-8 xl:px-12 xl:max-w-6xl">
       <div class="pt-8 pb-7 sm:pb-8 sm:text-center">
         <h1
-          class="relative mt-32 mb-4 text-4xl tracking-tight font-blimone sm:text-5xl lg:text-6xl text-slate-900 dark:text-slate-200"
+          class="relative mt-20 mb-4 text-4xl tracking-tight font-blimone sm:text-5xl lg:text-6xl text-slate-900 dark:text-slate-200 md:mt-32 lg:mt-32 xl:mt-32 2xl:mt-32"
         >
-          {{ appStore.h1 }}
+          <span class="mr-4"> {{ appStore.h1 }}</span>
           <span
-            class="absolute text-2xl tracking-wide version lg:text-4xl bg-gradient-to-br from-fuchsia-500 to-purple-600"
-            >{{ `V${version}` }}</span
+            class="text-xs mt-1 absolute tracking-wide version lg:text-base bg-gradient-to-br from-rose-300 to-rose-500"
+            >{{ version }}</span
           >
         </h1>
-        <p class="text-2xl text-slate-800 dark:text-slate-400"
-          >最新Vue3技术流，超全配置，大厂协作规范，大佬必备神器</p
-        >
+        <p class="text-2xl text-slate-800 dark:text-slate-400">你好，旅行者~</p>
       </div>
     </main>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-      <ul
-        class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-36 xl:px-20 sm:justify-start lg:justify-start"
-      >
+      <ul class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-36 xl:px-20">
         <li
           v-for="(item, index) in data"
           :key="index * 1.1"
@@ -38,13 +34,13 @@
         >
           <figure class="flex-none shadow-lg rounded-xl w-80 md:w-100">
             <blockquote
-              class="px-6 py-8 text-lg font-semibold leading-8 bg-white rounded-t-xl md:p-5 md:text-base md:leading-8 text-slate-700 dark:text-slate-300 dark:bg-slate-800 dark:highlight-white/5"
+              class="px-6 py-8 text-lg font-semibold leading-8 bg-gray-50 rounded-t-xl md:p-5 md:text-base md:leading-8 text-slate-700 dark:text-slate-300 dark:bg-slate-800 dark:highlight-white/5"
             >
               <SvgIcon name="svg-marks" />
               <p v-html="item.content"></p>
             </blockquote>
             <figcaption
-              class="flex items-center p-6 space-x-4 leading-6 text-white md:px-10 md:py-6 bg-gradient-to-br rounded-b-xl"
+              class="flex items-center p-6 space-x-4 leading-6 text-white md:px-6 md:py-6 bg-gradient-to-br rounded-b-xl"
               :class="item.color"
             >
               <div
@@ -54,18 +50,17 @@
               </div>
               <div class="flex-auto">
                 <div class="text-base font-semibold dark:text-slate-200">
-                  {{ item.title }}
+                  <p> {{ item.title }}</p>
                   <p>{{ item.author }}</p>
                 </div>
               </div>
               <cite class="flex">
-                <a
-                  :href="item.github"
-                  target="_blank"
+                <router-link
+                  :to="item.path"
                   class="transition-opacity duration-200 opacity-50 hover:opacity-75"
                 >
-                  <SvgIcon name="svg-github" />
-                </a>
+                  <SvgIcon :name="item.icon" />
+                </router-link>
               </cite>
             </figcaption>
           </figure>

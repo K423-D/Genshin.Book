@@ -7,9 +7,10 @@ export const useAppStore = defineStore(
   'app',
   {
     state: () => ({
-      title: '一个快速开箱即用的Vue3+Vite模板',
-      h1: 'Vue3+Vite2.x+Ts+Pinia大厂开发必备',
+      title: '一个原神资料库,使用hutao-api.',
+      h1: '一个原神资料库,使用hutao-api.',
       theme: 'dark',
+      projectName: 'Genshin.Book',
     }),
     getters: {},
     actions: {

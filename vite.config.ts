@@ -1,18 +1,19 @@
-import { UserConfig, ConfigEnv } from 'vite'
-import { createVitePlugins } from './config/vite/plugins'
-import { resolve } from 'path'
-import proxy from './config/vite/proxy'
-import { VITE_DROP_CONSOLE, VITE_PORT } from './config/constant'
+import { UserConfig, ConfigEnv } from 'vite';
+import { createVitePlugins } from './config/vite/plugins';
+import { resolve } from 'path';
+import proxy from './config/vite/proxy';
+import { VITE_DROP_CONSOLE, VITE_PORT } from './config/constant';
 
 function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir)
+  return resolve(process.cwd(), '.', dir);
 }
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfig => {
-  const isBuild = command === 'build'
-  console.log(command, mode)
+  const isBuild = command === 'build';
+  console.log(command, mode);
   return {
+    base: './',
     resolve: {
       alias: [
         {
@@ -69,5 +70,5 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       brotliSize: false,
       chunkSizeWarningLimit: 2000,
     },
-  }
-}
+  };
+};

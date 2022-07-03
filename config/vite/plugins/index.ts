@@ -5,7 +5,7 @@
 import { PluginOption } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import windiCSS from 'vite-plugin-windicss';
+// import windiCSS from 'vite-plugin-windicss';
 import VitePluginCertificate from 'vite-plugin-mkcert';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { ConfigSvgIconsPlugin } from './svgIcons';
@@ -51,7 +51,7 @@ export function createVitePlugins(isBuild: boolean) {
   vitePlugins.push(ConfigProgressPlugin());
 
   // windCSS
-  vitePlugins.push(windiCSS());
+  // vitePlugins.push(windiCSS());
 
   // vite-plugin-svg-icons
   vitePlugins.push(ConfigSvgIconsPlugin(isBuild));

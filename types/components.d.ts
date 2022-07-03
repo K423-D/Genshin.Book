@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Footer: typeof import('./../src/components/footer/index.vue')['default']
     Header: typeof import('./../src/components/Header/index.vue')['default']
+    ItemBox: typeof import('./../src/components/ItemBox/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../src/components/SvgIcon/index.vue')['default']

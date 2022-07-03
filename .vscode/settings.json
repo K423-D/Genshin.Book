@@ -4,6 +4,8 @@
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "files.eol": "\n",
+  "css.validate": false, // Disable css built-in lint
+  "stylelint.enable": true, // Enable sytlelint
   "search.exclude": {
     "**/node_modules": true,
     "**/*.log": true,
