@@ -5,10 +5,10 @@ export interface RequestOptions {
 
 // 返回res.data的interface
 export interface IResponse<T = any> {
-  code: number | string;
-  result: T;
+  retcode: number | string;
+  data: T;
   message: string;
-  status: string | number;
+  // status: string | number;
 }
 
 /**用户登录 */

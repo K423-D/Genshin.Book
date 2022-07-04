@@ -14,11 +14,11 @@
     return appStore.theme;
   });
   const isDark = useDark({
-    selector: 'body',
-    attribute: 'arco-theme',
-    valueDark: 'dark',
-    valueLight: 'light',
-    storageKey: 'arco-theme',
+    // selector: 'body',
+    // attribute: 'arco-theme',
+    // valueDark: 'dark',
+    // valueLight: 'light',
+    // storageKey: 'arco-theme',
     onChanged(dark: boolean) {
       appStore.toggleTheme(dark);
     },

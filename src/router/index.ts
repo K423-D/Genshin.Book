@@ -3,7 +3,7 @@ import routes from 'virtual:generated-pages';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-console.log(routes, '打印生成自动生成的路由');
+// console.log(routes, '打印生成自动生成的路由');
 // routes.push({
 //   path: '/',
 //   redirect: '/login',

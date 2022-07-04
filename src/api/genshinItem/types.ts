@@ -4,13 +4,7 @@ export interface ResResult {
 }
 
 export interface ResResultData {
-  data?: Item[];
+  data?: any[];
   retcode: number;
   message: string;
-}
-
-export interface Item {
-  id: number;
-  name: string;
-  url: string;
 }

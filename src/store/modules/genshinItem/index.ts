@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia';
 import { GenshinItemState } from './types';
 import { getAvatar, getReliquaries, getWeapon } from '/@/api/genshinItem';
-import { Item } from '/@/api/genshinItem/types';
+import { Item } from '/@/store/modules/genshinItem/types';
 import piniaStore from '/@/store/index';
+import ITEM_MAP from './itemMap';
 
 export const useGenshinItemStore = defineStore('genshinItem', {
-  state: (): GenshinItemState => ({
-    avaters: undefined,
+  state: () => ({
+    avatars: undefined,
     weapons: undefined,
     reliquaries: undefined,
   }),
@@ -19,7 +20,7 @@ export const useGenshinItemStore = defineStore('genshinItem', {
     // 设置角色数据
     setAvatar(partial: Partial<Item[] | undefined>) {
       this.$patch({
-        avaters: partial,
+        avatars: partial,
       });
     },
     // 设置武器数据
@@ -35,19 +36,40 @@ export const useGenshinItemStore = defineStore('genshinItem', {
       });
     },
     // 获取角色映射列表
-    async avatar() {
+    async fetchAvatar() {
       const res = await getAvatar();
-      this.setAvatar(res.data.data);
+      let d: any[] = res.map((item) => {
+        item.star = ITEM_MAP.characterMap[`${item.name}${item.id}`]
+          ? ITEM_MAP.characterMap[`${item.name}${item.id}`].star
+          : 0;
+        return item;
+      });
+      d.sort((a, b) => a.id - b.id);
+      this.setAvatar(d);
     },
     // 获取武器映射列表
-    async weapon() {
+    async fetchWeapon() {
       const res = await getWeapon();
-      this.setWeapon(res.data.data);
+      let d: any[] = res.map((item) => {
+        item.star = ITEM_MAP.weaponMap[`${item.name}${item.id}`]
+          ? ITEM_MAP.weaponMap[`${item.name}${item.id}`].star
+          : 0;
+        return item;
+      });
+      d.sort((a, b) => a.id - b.id);
+      this.setWeapon(d);
     },
     // 获取圣遗物映射列表
-    async reliquries() {
+    async fetchReliquries() {
       const res = await getReliquaries();
-      this.setReliquaries(res.data.data);
+      let d: any[] = res.map((item) => {
+        item.star = ITEM_MAP.reliquariesMap[`${item.name}${item.id}`]
+          ? ITEM_MAP.reliquariesMap[`${item.name}${item.id}`].star
+          : 0;
+        return item;
+      });
+      d.sort((a, b) => a.id - b.id);
+      this.setReliquaries(d);
     },
     // 重置所有数据
     resetAll() {

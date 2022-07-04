@@ -1,4 +1,3 @@
-import { ResResult } from './types';
 import { get } from '/@/utils/http/axios';
 
 // 物品映射数据
@@ -9,12 +8,12 @@ enum URL {
 }
 
 const getAvatar = async () => {
-  return get<ResResult>({ url: URL.avatar });
+  return get({ url: URL.avatar });
 };
 const getWeapon = async () => {
-  return get<ResResult>({ url: URL.weapon });
+  return get({ url: URL.weapon });
 };
 const getReliquaries = async () => {
-  return get<ResResult>({ url: URL.reliquaries });
+  return get({ url: URL.reliquaries });
 };
 export { getAvatar, getWeapon, getReliquaries };

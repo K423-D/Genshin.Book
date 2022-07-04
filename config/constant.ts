@@ -4,7 +4,7 @@
  */
 
 // 应用名
-export const APP_TITLE = 'K';
+export const APP_TITLE = 'Genshin.Book';
 
 // 本地服务端口
 export const VITE_PORT = 3000;
@@ -30,7 +30,7 @@ export const ANALYSIS = true;
 export const MARKDOWN = true;
 
 // 代码压缩
-export const COMPRESSION = true;
+export const COMPRESSION = false;
 
 // 删除 console
 export const VITE_DROP_CONSOLE = true;

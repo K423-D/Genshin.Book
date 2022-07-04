@@ -3,7 +3,7 @@ import { showMessage } from './status';
 import { IResponse } from './type';
 import { getToken } from '/@/utils/auth';
 
-// 如果请求话费了超过 `timeout` 的时间，请求将被中断
+// 如果请求花费了超过 `timeout` 的时间，请求将被中断
 axios.defaults.timeout = 5000;
 // 表示跨域请求时是否需要使用凭证
 axios.defaults.withCredentials = false;
@@ -12,7 +12,7 @@ axios.defaults.withCredentials = false;
 axios.defaults.headers.post['Access-Control-Allow-Origin-Type'] = '*';
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.BASE_URL + '',
+  baseURL: import.meta.env.VITE_APP_API_BASEURL + '',
   // transformRequest: [
   //   function (data) {
   //     //由于使用的 form-data传数据所以要格式化
@@ -31,7 +31,13 @@ axiosInstance.interceptors.response.use(
     // } else if (response.data && response.data.token) {
     //   localStorage.setItem('app_token', response.data.token)
     // }
-
+    if (import.meta.env.MODE == 'development') {
+      console.log(
+        `%c response: ${response.config.url}`,
+        'color:lightgreen;font-size:12px;background:black;padding:2px',
+      );
+      console.log(response.data);
+    }
     if (response.status === 200) {
       return response;
     }
@@ -57,7 +63,11 @@ axiosInstance.interceptors.request.use(
     if (token) {
       // config.headers.Authorization = `${TokenPrefix}${token}`
     }
-    return config;
+    if (import.meta.env.MODE == 'development') {
+      console.log('%c request: ', 'color:white;background:black;font-size:12px;padding:2px');
+      console.log(config.data);
+      return config;
+    }
   },
   (error: any) => {
     return Promise.reject(error);
@@ -72,9 +82,9 @@ const request = <T = any>(config: AxiosRequestConfig): Promise<T> => {
       .then((res: AxiosResponse<IResponse>) => {
         // resolve(res as unknown as Promise<T>);
         const {
-          data: { result },
+          data: { data },
         } = res;
-        resolve(result as T);
+        resolve(data as T);
       });
   });
 };

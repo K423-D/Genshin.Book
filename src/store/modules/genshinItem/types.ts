@@ -1,7 +1,11 @@
-import { Item } from '/@/api/genshinItem/types';
+export interface Item {
+  name: string;
+  url: string;
+  star?: number;
+}
 
 export interface GenshinItemState {
-  avaters?: Item[];
+  avatars?: Item[];
   weapons?: Item[];
   reliquaries?: Item[];
 }
