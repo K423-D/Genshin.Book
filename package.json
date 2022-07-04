@@ -4,7 +4,9 @@
   "author": "Mr.D",
   "scripts": {
     "dev": "vite --mode development",
+    "pro": "vite --mode production",
     "build": "vue-tsc --noEmit && vite build",
+    "clean": "vite --force",
     "preview": "vite preview",
     "build:dev": "vite build --mode development",
     "build:pro": "vite build --mode production",
@@ -14,14 +16,13 @@
     "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
     "lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "lint:lint-staged": "lint-staged",
-    "prepare": "husky install",
     "deps": "yarn upgrade-interactive --latest"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.6",
     "@vueuse/components": "^8.7.5",
     "@vueuse/core": "^8.7.5",
-    "axios": "^0.27.2",
+    "axios": "0.26.1",
     "element-plus": "^2.2.6",
     "lodash": "^4.17.21",
     "mockjs": "^1.1.0",

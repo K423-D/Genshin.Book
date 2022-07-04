@@ -66,8 +66,8 @@ axiosInstance.interceptors.request.use(
     if (import.meta.env.MODE == 'development') {
       console.log('%c request: ', 'color:white;background:black;font-size:12px;padding:2px');
       console.log(config.data);
-      return config;
     }
+    return config;
   },
   (error: any) => {
     return Promise.reject(error);
