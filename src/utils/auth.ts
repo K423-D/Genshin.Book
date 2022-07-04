@@ -12,4 +12,10 @@ const setToken = (token: string) => {
 const clearToken = () => {
   localStorage.removeItem(TokenKey);
 };
-export { TokenPrefix, isLogin, getToken, setToken, clearToken };
+const whiteList = [
+  '/auth/login',
+  '/GenshinItem/Avatars',
+  '/GenshinItem/Weapons',
+  '/GenshinItem/Reliquaries',
+];
+export { TokenPrefix, isLogin, getToken, setToken, clearToken, whiteList };

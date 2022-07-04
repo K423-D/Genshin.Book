@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { showMessage } from './status';
 import { IResponse } from './type';
-import { getToken } from '/@/utils/auth';
+import { getToken, TokenPrefix, whiteList } from '/@/utils/auth';
 
 // 如果请求花费了超过 `timeout` 的时间，请求将被中断
 axios.defaults.timeout = 5000;
@@ -60,11 +60,14 @@ axiosInstance.interceptors.response.use(
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     const token = getToken();
-    if (token) {
-      // config.headers.Authorization = `${TokenPrefix}${token}`
+    if (token && whiteList.includes(`${config.url}`)) {
+      config.headers ? (config.headers.Authorization = `${TokenPrefix}${token}`) : '';
     }
     if (import.meta.env.MODE == 'development') {
-      console.log('%c request: ', 'color:white;background:black;font-size:12px;padding:2px');
+      console.log(
+        `%c request: ${config.url}`,
+        'color:white;background:black;font-size:12px;padding:2px',
+      );
       console.log(config.data);
     }
     return config;

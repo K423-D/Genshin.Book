@@ -11,25 +11,27 @@
   background: transparent;
 }
 .bg-1-star {
-  background: url('./assets/images/1star.png');
+  background: url('./assets/images/1star_2.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .bg-2-star {
-  background: url('./assets/images/2star.png');
+  background: url('./assets/images/2star_2.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .bg-3-star {
-  background: url('./assets/images/3star.png');
+  background: url('./assets/images/3star_2.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .bg-4-star {
-  background: url('./assets/images/4star.png');
+  background: url('./assets/images/4star_2.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .bg-5-star {
-  background: url('./assets/images/5star.png');
+  background: url('./assets/images/5star_2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -34,9 +34,9 @@
         >
           <figure class="flex-none shadow-lg rounded-xl w-80 md:w-100">
             <blockquote
-              class="px-6 py-8 text-lg font-semibold leading-8 bg-gray-50 rounded-t-xl md:p-5 md:text-base md:leading-8 text-slate-700 dark:text-slate-300 dark:bg-slate-800 dark:highlight-white/5"
+              class="px-6 py-8 text-lg font-semibold leading-8 bg-gray-100 rounded-t-xl md:p-5 md:text-base md:leading-8 text-slate-700 dark:text-slate-300 dark:bg-slate-800 dark:highlight-white/5"
             >
-              <SvgIcon name="svg-marks" />
+              <SvgIcon name="svg-marks" :color="'#374151'" />
               <p v-html="item.content"></p>
             </blockquote>
             <figcaption
