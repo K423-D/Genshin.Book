@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia';
 import piniaStore from '/@/store/index';
 import { AppState } from './types';
+import { getAccessToken } from '/@/api/app';
+import { setToken } from '/@/utils/auth';
+import { ElMessage } from 'element-plus';
 
 export const useAppStore = defineStore(
   // 唯一ID
@@ -11,6 +14,7 @@ export const useAppStore = defineStore(
       h1: '一个原神资料库,使用hutao-api.',
       theme: 'dark',
       projectName: 'Genshin.Book',
+      accessToken: '',
     }),
     getters: {},
     actions: {
@@ -32,6 +36,19 @@ export const useAppStore = defineStore(
           document.documentElement.classList.remove('dark');
           document.body.removeAttribute('arco-theme');
           localStorage.setItem('theme', this.theme);
+        }
+      },
+      // 获取accessToken
+      async fetchAccessToken() {
+        const data = {
+          Appid: import.meta.env.VITE_APP_APPID as string,
+          Secret: import.meta.env.VITE_APP_SECRET as string,
+        };
+        const res = await getAccessToken(data);
+        if (res.accessToken) {
+          setToken(res.accessToken);
+        } else {
+          ElMessage.error('获取数据失败，请刷新网页');
         }
       },
     },

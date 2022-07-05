@@ -60,7 +60,7 @@ axiosInstance.interceptors.response.use(
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     const token = getToken();
-    if (token && whiteList.includes(`${config.url}`)) {
+    if (token && !whiteList.includes(`${config.url}`)) {
       config.headers ? (config.headers.Authorization = `${TokenPrefix}${token}`) : '';
     }
     if (import.meta.env.MODE == 'development') {

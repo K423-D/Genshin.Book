@@ -4,12 +4,16 @@ import { getAvatar, getReliquaries, getWeapon } from '/@/api/genshinItem';
 import { Item } from '/@/store/modules/genshinItem/types';
 import piniaStore from '/@/store/index';
 import ITEM_MAP from './itemMap';
+import * as _ from 'lodash';
 
 export const useGenshinItemStore = defineStore('genshinItem', {
   state: () => ({
-    avatars: undefined,
-    weapons: undefined,
-    reliquaries: undefined,
+    avatars: [] as Item[], // 角色映射数据
+    avatarMap: ITEM_MAP.characterMap, // 角色总数据
+    weapons: [] as Item[], // 武器映射数据
+    weaponMap: ITEM_MAP.weaponMap, // 武器总数据
+    reliquaries: [] as Item[], // 圣遗物映射数据
+    reliquaryMap: ITEM_MAP.reliquariesMap, // 圣遗物总数据
   }),
   getters: {
     genshinItems(state: GenshinItemState): GenshinItemState {
@@ -18,58 +22,62 @@ export const useGenshinItemStore = defineStore('genshinItem', {
   },
   actions: {
     // 设置角色数据
-    setAvatar(partial: Partial<Item[] | undefined>) {
+    setAvatar(avatars: Item[]) {
       this.$patch({
-        avatars: partial,
+        avatars,
       });
     },
     // 设置武器数据
-    setWeapon(partial: Partial<Item[] | undefined>) {
+    setWeapon(weapons: Item[]) {
       this.$patch({
-        weapons: partial,
+        weapons,
       });
     },
     // 设置圣遗物数据
-    setReliquaries(partial: Partial<Item[] | undefined>) {
+    setReliquaries(reliquaries: Item[]) {
       this.$patch({
-        reliquaries: partial,
+        reliquaries,
       });
     },
     // 获取角色映射列表
     async fetchAvatar() {
       const res = await getAvatar();
-      let d: any[] = res.map((item) => {
-        item.star = ITEM_MAP.characterMap[`${item.name}${item.id}`]
-          ? ITEM_MAP.characterMap[`${item.name}${item.id}`].star
-          : 0;
+      const arr = _.cloneDeep(this.avatarMap);
+      let d: Item[] = res.map((item) => {
+        item.star = arr[item.id] ? arr[item.id].star : 0;
+        // 处理角色总数据
+        arr[item.id] = Object.assign({}, arr[item.id], item);
         return item;
       });
       d.sort((a, b) => a.id - b.id);
       this.setAvatar(d);
+      this.$patch({ avatarMap: arr });
     },
     // 获取武器映射列表
     async fetchWeapon() {
       const res = await getWeapon();
+      const arr = _.cloneDeep(this.weaponMap);
       let d: any[] = res.map((item) => {
-        item.star = ITEM_MAP.weaponMap[`${item.name}${item.id}`]
-          ? ITEM_MAP.weaponMap[`${item.name}${item.id}`].star
-          : 0;
+        item.star = arr[item.id] ? arr[item.id].star : 0;
+        arr[item.id] = Object.assign({}, arr[item.id], item);
         return item;
       });
       d.sort((a, b) => a.id - b.id);
       this.setWeapon(d);
+      this.$patch({ weaponMap: arr });
     },
     // 获取圣遗物映射列表
     async fetchReliquries() {
       const res = await getReliquaries();
+      const arr = _.cloneDeep(this.reliquaryMap);
       let d: any[] = res.map((item) => {
-        item.star = ITEM_MAP.reliquariesMap[`${item.name}${item.id}`]
-          ? ITEM_MAP.reliquariesMap[`${item.name}${item.id}`].star
-          : 0;
+        item.star = arr[item.id] ? arr[item.id].star : 0;
+        arr[item.id] = Object.assign({}, arr[item.id], item);
         return item;
       });
       d.sort((a, b) => a.id - b.id);
       this.setReliquaries(d);
+      this.$patch({ reliquaryMap: arr });
     },
     // 重置所有数据
     resetAll() {

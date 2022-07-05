@@ -32,7 +32,9 @@
           :key="index * 1.1"
           class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8"
         >
-          <figure class="flex-none shadow-lg rounded-xl w-80 md:w-100">
+          <figure
+            class="flex-none shadow-lg rounded-xl w-80 md:w-100 hover:scale-105 transition-all"
+          >
             <blockquote
               class="px-6 py-8 text-lg font-semibold leading-8 bg-gray-100 rounded-t-xl md:p-5 md:text-base md:leading-8 text-slate-700 dark:text-slate-300 dark:bg-slate-800 dark:highlight-white/5"
             >
@@ -51,7 +53,7 @@
               <div class="flex-auto">
                 <div class="text-base font-semibold dark:text-slate-200">
                   <p> {{ item.title }}</p>
-                  <p>{{ item.author }}</p>
+                  <p class="text-sm">{{ item.author }}</p>
                 </div>
               </div>
               <cite class="flex">

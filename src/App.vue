@@ -2,8 +2,21 @@
   <router-view />
 </template>
 <script setup lang="ts">
-  // import { useAppStore } from './store/modules/app'
-  // const appStore = useAppStore()
+  import { useAppStore } from './store/modules/app';
+  import { useGenshinItemStore } from './store/modules/genshinItem';
+  const appStore = useAppStore();
+  appStore.fetchAccessToken();
+
+  const genshinItems = useGenshinItemStore();
+  if (genshinItems.avatars.length == 0) {
+    genshinItems.fetchAvatar();
+  }
+  if (genshinItems.weapons.length == 0) {
+    genshinItems.fetchWeapon();
+  }
+  if (genshinItems.reliquaries.length == 0) {
+    genshinItems.fetchReliquries();
+  }
 
   // provide('reload', reload)
   // function reload() {

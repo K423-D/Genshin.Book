@@ -2,54 +2,17 @@
   import Header from '/@/components/Header/index.vue';
   import ItemBox from '/@/components/ItemBox/index.vue';
   import { useGenshinItemStore } from '/@/store/modules/genshinItem';
-  // const arr = [
-  //   {
-  //     id: 10000016,
-  //     name: '迪卢克',
-  //     star: 0,
-  //     url: 'https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Diluc.png',
-  //   },
-  //   {
-  //     id: 10000042,
-  //     name: '刻晴',
-  //     star: 1,
-  //     url: 'https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Keqing.png',
-  //   },
-  //   {
-  //     id: 10000022,
-  //     name: '温迪',
-  //     star: 2,
-  //     url: 'https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Venti.png',
-  //   },
-  //   {
-  //     id: 10000046,
-  //     name: '胡桃',
-  //     star: 3,
-  //     url: 'https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Hutao.png',
-  //   },
-  //   {
-  //     id: 10000030,
-  //     name: '钟离',
-  //     star: 4,
-  //     url: 'https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Zhongli.png',
-  //   },
-  //   {
-  //     id: 10000037,
-  //     name: '甘雨',
-  //     star: 5,
-  //     url: 'https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ganyu.png',
-  //   },
-  // ];
-  // const genshinItems = reactive({
-  //   avatars: arr,
-  //   weapons: arr,
-  //   reliquaries: arr,
-  // });
 
   const genshinItems = useGenshinItemStore();
-  genshinItems.fetchAvatar();
-  genshinItems.fetchWeapon();
-  genshinItems.fetchReliquries();
+  if (genshinItems.avatars.length == 0) {
+    genshinItems.fetchAvatar();
+  }
+  if (genshinItems.weapons.length == 0) {
+    genshinItems.fetchWeapon();
+  }
+  if (genshinItems.reliquaries.length == 0) {
+    genshinItems.fetchReliquries();
+  }
 
   onMounted(() => {});
 </script>
@@ -58,7 +21,7 @@
     <Header></Header>
     <!-- 角色 -->
     <main class="max-w-5xl px-4 mx-auto pb-22 sm:px-6 md:px-8 xl:px-12 xl:max-w-6xl">
-      <div class="pt-8 pb-7 sm:pb-8 sm:text-center">
+      <div class="pt-8 pb-0 md:pb-7 lg:pb-7 xl:pb-7 2xl:pb-7 sm:pb-8 sm:text-center">
         <h1
           class="relative mt-12 mb-4 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
@@ -67,7 +30,9 @@
       </div>
     </main>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-      <ul class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-36 xl:px-20">
+      <ul
+        class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 sm:px-20 lg:px-36 xl:px-20"
+      >
         <li
           v-for="(item, index) in genshinItems.avatars"
           :key="index * 1.1"
@@ -79,7 +44,7 @@
     </article>
     <!-- 武器 -->
     <main class="max-w-5xl px-4 mx-auto pb-22 sm:px-6 md:px-8 xl:px-12 xl:max-w-6xl">
-      <div class="pt-8 pb-7 sm:pb-8 sm:text-center">
+      <div class="pt-8 pb-0 md:pb-7 lg:pb-7 xl:pb-7 2xl:pb-7 sm:pb-8 sm:text-center">
         <h1
           class="relative mt-12 mb-4 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
@@ -88,7 +53,9 @@
       </div>
     </main>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-      <ul class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-36 xl:px-20">
+      <ul
+        class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 sm:px-20 lg:px-36 xl:px-20"
+      >
         <li
           v-for="(item, index) in genshinItems.weapons"
           :key="index * 1.1"
@@ -100,7 +67,7 @@
     </article>
     <!-- 圣遗物 -->
     <main class="max-w-5xl px-4 mx-auto pb-22 sm:px-6 md:px-8 xl:px-12 xl:max-w-6xl">
-      <div class="pt-8 pb-7 sm:pb-8 sm:text-center">
+      <div class="pt-8 pb-0 md:pb-7 lg:pb-7 xl:pb-7 2xl:pb-7 sm:pb-8 sm:text-center">
         <h1
           class="relative mt-12 mb-4 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
@@ -109,7 +76,9 @@
       </div>
     </main>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-      <ul class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-36 xl:px-20">
+      <ul
+        class="flex flex-wrap items-center justify-center py-0 pb-8 md:py-6 lg:py-6 xl:py-6 2xl:py-6 sm:px-20 lg:px-36 xl:px-20"
+      >
         <li
           v-for="(item, index) in genshinItems.reliquaries"
           :key="index * 1.1"
