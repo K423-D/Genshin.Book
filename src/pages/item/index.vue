@@ -1,18 +1,9 @@
 <script setup lang="ts">
   import Header from '/@/components/Header/index.vue';
   import ItemBox from '/@/components/ItemBox/index.vue';
-  import { useGenshinItemStore } from '/@/store/modules/genshinItem';
+  import useGenshinItem from '/@/hooks/useGenshinItem';
 
-  const genshinItems = useGenshinItemStore();
-  if (genshinItems.avatars.length == 0) {
-    genshinItems.fetchAvatar();
-  }
-  if (genshinItems.weapons.length == 0) {
-    genshinItems.fetchWeapon();
-  }
-  if (genshinItems.reliquaries.length == 0) {
-    genshinItems.fetchReliquries();
-  }
+  const genshinItems = useGenshinItem();
 
   onMounted(() => {});
 </script>

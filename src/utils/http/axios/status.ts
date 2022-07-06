@@ -1,3 +1,7 @@
+import { ElMessage } from 'element-plus';
+import { clearToken } from '../../auth';
+import router from '/@/router';
+
 export const showMessage = (status: number | string): string => {
   let message = '';
   switch (status) {
@@ -5,7 +9,8 @@ export const showMessage = (status: number | string): string => {
       message = '请求错误(400)';
       break;
     case 401:
-      message = '未授权，请重新登录(401)';
+      message = '权限异常，正在返回首页并更新信息(401)';
+      clearToken();
       break;
     case 403:
       message = '拒绝访问(403)';
@@ -37,5 +42,9 @@ export const showMessage = (status: number | string): string => {
     default:
       message = `连接出错(${status})!`;
   }
+  ElMessage.error(`${message}`);
+  setTimeout(() => {
+    router.push('/');
+  }, 1500);
   return `${message}，请检查网络或联系管理员！`;
 };

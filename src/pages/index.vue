@@ -5,7 +5,18 @@
   import { framework } from './data';
   import Header from '/@/components/Header/index.vue';
 
+  // import { useGenshinItemStore } from '../store/modules/genshinItem';
+  import { getToken } from '../utils/auth';
+  // import useGenshinItem from '../hooks/useGenshinItem';
+  const token = getToken();
   const appStore = useAppStore();
+
+  if (!token) {
+    appStore.fetchAccessToken();
+  }
+
+  // const genshinItems = useGenshinItem();
+
   const data = ref(framework);
 </script>
 <template>
