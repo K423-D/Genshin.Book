@@ -15,6 +15,8 @@
   const avatarParticipation = useAvatarParticipation();
   const currentFloor = ref(9);
 
+  document.title = `深渊角色使用率 | Genshin.Book`;
+
   onMounted(() => {});
   const handleFloorChange = (index: number) => {
     currentFloor.value = index + 8;
@@ -91,6 +93,7 @@
                 :name="`${usage.value}%`"
                 :url="genshinItem.avatarMap[usage.id].url"
                 :star="genshinItem.avatarMap[usage.id].star"
+                :font-size="'text-xs md:text-base lg:text-base xl:text-base'"
               /> </li
           ></ul>
         </li>
@@ -119,6 +122,7 @@
         </li>
       </ul>
     </article> -->
+    <Footer />
   </div>
 </template>
 <style lang="less" scoped></style>

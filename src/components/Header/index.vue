@@ -43,20 +43,20 @@
               class="mr-3 flex-none w-[2.0625rem] md:w-auto leading-6 dark:text-slate-200"
               >{{ appStore.projectName }}</router-link
             >
-            <div class="relative items-center hidden ml-auto lg:flex">
-              <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
+            <div class="relative items-center ml-auto lg:flex">
+              <!-- <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
                 <ul class="flex space-x-8">
-                  <!-- <li>
+                  <li>
                     <router-link to="/demo" class="hover:text-sky-500 dark:hover:text-sky-400"
                       >GithubDemo</router-link
                     >
-                  </li> -->
+                  </li>
                 </ul>
-              </nav>
+              </nav> -->
               <div
-                class="flex items-center pl-6 ml-6 border-l border-slate-200 dark:border-slate-800"
+                class="flex justify-between items-center pl-6 ml-6 border-l border-slate-200 dark:border-slate-800"
               >
-                <el-tooltip :content="theme === 'light' ? '设置暗黑主题' : '设置明亮主题'">
+                <div class="md:hidden lg:hidden xl:hidden">
                   <el-button
                     class="nav-btn"
                     :shape="'circle'"
@@ -67,11 +67,25 @@
                     size="small"
                     @click="toggleTheme()"
                   />
-                </el-tooltip>
+                </div>
+                <div class="hidden md:flex lg:flex">
+                  <el-tooltip :content="theme === 'light' ? '设置暗黑主题' : '设置明亮主题'">
+                    <el-button
+                      class="nav-btn"
+                      :shape="'circle'"
+                      type="info"
+                      plain
+                      :icon="theme === 'dark' ? Sunny : Moon"
+                      circle
+                      size="small"
+                      @click="toggleTheme()"
+                    />
+                  </el-tooltip>
+                </div>
                 <a
                   href="https://github.com/K423-D/Genshin.Book"
                   target="_bank"
-                  class="block ml-6 text-slate-400 hover:text-slate-500 dark:hover:text-slate-300"
+                  class="ml-6 text-slate-400 hover:text-slate-500 dark:hover:text-slate-300 hidden md:block lg:block"
                 >
                   <SvgIcon name="svg-github" size="small" color="#999999" />
                 </a>

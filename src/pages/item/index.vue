@@ -4,6 +4,7 @@
   import useGenshinItem from '/@/hooks/useGenshinItem';
 
   const genshinItems = useGenshinItem();
+  document.title = `物品概览 | Genshin.Book`;
 
   onMounted(() => {});
 </script>
@@ -79,6 +80,8 @@
         </li>
       </ul>
     </article>
+
+    <Footer />
   </div>
 </template>
 <style lang="less" scoped></style>

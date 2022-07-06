@@ -1,12 +1,15 @@
 <template>
-  <a-layout-footer class="footer">
+  <!-- <a-layout-footer class="footer bottom-0 w-full">
     <SvgIcon name="svg-github" size="24" style="margin-right: 10px" />
     <router-link to="/"></router-link>
-  </a-layout-footer>
+  </a-layout-footer> -->
+  <footer class="footer bottom-0 w-full">
+    <div class="text-sm">Email：i@k423.info</div>
+  </footer>
 </template>
 
 <script setup lang="ts">
-  import SvgIcon from '/@/components/SvgIcon/index.vue';
+  // import SvgIcon from '/@/components/SvgIcon/index.vue';
 </script>
 
 <style lang="less" scoped>
