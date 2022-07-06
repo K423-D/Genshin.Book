@@ -47,6 +47,8 @@ export const useAppStore = defineStore(
         const res = await getAccessToken(data);
         if (res.accessToken) {
           setToken(res.accessToken);
+          ElMessage.success('数据更新成功');
+          window.location.reload();
         } else {
           ElMessage.error('获取数据失败，请刷新网页');
         }

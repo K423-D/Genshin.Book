@@ -25,7 +25,7 @@
     },
     url: {
       type: String,
-      required: true,
+      // required: true,
     },
     star: {
       type: Number,

@@ -10,13 +10,13 @@ export const framework = [
     icon: 'svg-arrow-circle-right',
   },
   {
-    content: '深渊数据统计🌌',
+    content: '深渊角色使用率统计🌌',
     avatar:
       'https://img-static.mihoyo.com/communityweb/upload/1911ab16b4af46252dbd90fc539d4fc5.png',
-    title: '角色，命座，圣遗物',
+    title: '本期有0用户数据',
     path: '/abyss',
     color: 'from-orange-400 to-purple-600',
-    author: '武器，队伍等...',
+    author: '本期有0用户满星',
     icon: 'svg-arrow-circle-right',
   },
 ];

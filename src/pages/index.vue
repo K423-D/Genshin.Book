@@ -6,18 +6,17 @@
   import Header from '/@/components/Header/index.vue';
 
   // import { useGenshinItemStore } from '../store/modules/genshinItem';
-  import { getToken } from '../utils/auth';
+  import userOverview from '../hooks/userOverview';
   // import useGenshinItem from '../hooks/useGenshinItem';
-  const token = getToken();
   const appStore = useAppStore();
-
-  if (!token) {
-    appStore.fetchAccessToken();
-  }
-
-  // const genshinItems = useGenshinItem();
-
   const data = ref(framework);
+
+  const overview = userOverview();
+  watchEffect(() => {
+    data.value[1].title = `本期有${overview.collectedPlayerCount}用户数据`;
+    data.value[1].author = `本期有${overview.fullStarPlayerCount}用户满星`;
+  });
+  onMounted(() => {});
 </script>
 <template>
   <div class="dark:text-slate-400 dark:bg-slate-900 min-h-screen">
@@ -53,7 +52,7 @@
               <p v-html="item.content"></p>
             </blockquote>
             <figcaption
-              class="flex items-center p-6 space-x-4 leading-6 text-white md:px-6 md:py-6 bg-gradient-to-br rounded-b-xl"
+              class="flex items-center px-4 py-6 space-x-4 leading-6 text-white bg-gradient-to-br rounded-b-xl"
               :class="item.color"
             >
               <div
