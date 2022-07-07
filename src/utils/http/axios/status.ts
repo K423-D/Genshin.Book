@@ -44,7 +44,9 @@ export const showMessage = (status: number | string): string => {
   }
   ElMessage.error(`${message}`);
   setTimeout(() => {
-    router.push('/');
+    if (router.currentRoute.value.path == '/') {
+      window.location.reload();
+    } else router.push('/');
   }, 1500);
   return `${message}，请检查网络或联系管理员！`;
 };

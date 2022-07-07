@@ -15,8 +15,18 @@ export const framework = [
       'https://img-static.mihoyo.com/communityweb/upload/1911ab16b4af46252dbd90fc539d4fc5.png',
     title: '本期有0用户数据',
     path: '/abyss',
-    color: 'from-orange-400 to-purple-600',
+    color: 'from-cyan-500 to-purple-600',
     author: '本期有0用户满星',
+    icon: 'svg-arrow-circle-right',
+  },
+  {
+    content: '角色圣遗物使用率统计🧰',
+    avatar:
+      'https://img-static.mihoyo.com/communityweb/upload/a76fa2eefd16e5e133232afdcc16f606.png',
+    title: '圣遗物套装',
+    path: '/reliquary',
+    color: 'from-purple-500 to-red-600',
+    author: '以及使用率',
     icon: 'svg-arrow-circle-right',
   },
 ];
