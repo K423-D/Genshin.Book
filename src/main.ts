@@ -10,6 +10,7 @@ import './index.css';
 //改为element-plus默认UI
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+import 'element-plus/theme-chalk/dark/css-vars.css';
 
 // 支持SVG
 import 'virtual:svg-icons-register';

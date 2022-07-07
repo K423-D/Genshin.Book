@@ -1,12 +1,19 @@
 <script setup lang="ts">
   import Header from '/@/components/Header/index.vue';
-  // import ItemBox from '/@/components/ItemBox/index.vue';
+  import ItemBox from '/@/components/ItemBox/index.vue';
+  import AvatarSelect from '/@/components/AvatarSelect/index.vue';
+
   import useAvatarReliquaryUsage from '/@/hooks/useAvatarReliquaryUsage';
   import useGenshinItem from '/@/hooks/useGenshinItem';
   const genshinItem = useGenshinItem();
   const avatarReliquaryUsage = useAvatarReliquaryUsage();
   document.title = `圣遗物使用数据 | Genshin.Book`;
   console.log(avatarReliquaryUsage.data);
+  const currentAvatar = ref<number>(10000002);
+  const currentUsage = computed(() => {
+    const res = avatarReliquaryUsage.data.find((item) => item.avatar == currentAvatar.value);
+    return res;
+  });
 
   onMounted(() => {});
 </script>
@@ -27,30 +34,34 @@
       <ul
         class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 sm:px-20 lg:px-36 xl:px-20"
       >
-        <li
-          v-for="(item, index) in avatarReliquaryUsage.data"
-          :key="index * 1.1"
-          class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8"
-        >
-          <div class="flex justify-center items-center">
+        <li class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8">
+          <!-- <div class="flex justify-center items-center">
             <ItemBox
               class="max-w-fit"
-              :name="genshinItem.avatarMap[item.avatar].name"
-              :url="genshinItem.avatarMap[item.avatar].url"
-              :star="genshinItem.avatarMap[item.avatar].star"
+              :name="genshinItem.avatarMap[currentAvatar].name"
+              :url="genshinItem.avatarMap[currentAvatar].url"
+              :star="genshinItem.avatarMap[currentAvatar].star"
             />
+          </div> -->
+          <AvatarSelect
+            :avatar="genshinItem.avatarMap[currentAvatar]"
+            :avatars="genshinItem.avatars"
+          />
+          <div class="flex justify-center items-center mt-2 text-sm">
+            <span>点击头像选择角色</span>
           </div>
-          <ul class="flex flex-wrap">
+          <ul class="flex flex-wrap justify-between items-center">
             <li
-              class="flex flex-wrap justify-start items-center py-4 w-full"
-              v-for="(usage, j) in item.reliquaryUsage"
+              v-if="currentAvatar"
+              class="flex flex-wrap justify-between items-center py-2 border mx-1 mt-4 px-2 rounded-lg border-red-600 border-opacity-25 dark:border-opacity-50 md:py-4 lg:py-4 md:px-6 lg:px-6 md:mx-4 lg:mx-4"
+              v-for="(usage, j) in currentUsage?.reliquaryUsage"
               :key="j"
             >
               <div
-                class="flex justify-between items-center px-2"
+                class="flex justify-between items-center pr-2"
                 :class="
                   k == 1 || usage.ids.length == 1
-                    ? 'border-r border-slate-200 dark:border-slate-800'
+                    ? 'border-r border-gray-800 dark:border-gray-200 border-opacity-25 dark:border-opacity-25'
                     : ''
                 "
                 v-for="(reliquary, k) in usage.ids"
@@ -58,14 +69,13 @@
               >
                 <ItemBox
                   class="mr-2"
-                  :name="genshinItem.reliquaryMap[reliquary.id].name"
+                  :name="`${reliquary.suit}件套`"
                   :url="genshinItem.reliquaryMap[reliquary.id].url"
                   :star="genshinItem.reliquaryMap[reliquary.id].star"
                 />
-                <div>{{ `${reliquary.suit}件套` }}</div>
-                <div class="ml-2" v-if="usage.ids.length == 2 && k == 0">+</div>
+                <div class="mx-2 md:mx-6 lg:mx-6" v-if="usage.ids.length == 2 && k == 0">+</div>
               </div>
-              <div class="text-center ml-2">{{ `${usage.value}%` }}</div>
+              <div class="text-center ml-2 w-14">{{ `${usage.value}%` }}</div>
             </li>
           </ul>
         </li>

@@ -40,7 +40,6 @@ export const useAvatarReliquaryUsageStore = defineStore('avatarReliquaryUsage', 
           reliquaryUsage: usages,
         };
       });
-      console.log(d);
 
       this.setAvatarReliquaryUsage(d);
     },
