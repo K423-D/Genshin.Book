@@ -29,7 +29,7 @@
         >
           <span class="mr-4"> {{ appStore.h1 }}</span>
           <span
-            class="text-xs mt-1 absolute tracking-wide version lg:text-base bg-gradient-to-br from-rose-300 to-rose-500"
+            class="text-xs mt-2 absolute tracking-wide version rounded-full px-4 py-1 lg:text-base bg-gradient-to-br from-rose-300 to-rose-500"
             >{{ version }}</span
           >
         </h1>
@@ -87,8 +87,7 @@
 <style lang="less" scoped>
   .version {
     display: inline-block;
-    padding: 6px;
+    // padding: 6px;
     margin-left: 6px;
-    border-radius: 10px;
   }
 </style>

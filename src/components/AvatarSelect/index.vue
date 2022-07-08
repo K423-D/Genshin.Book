@@ -1,6 +1,7 @@
 <script setup name="AvatarSelect" lang="ts">
   // const { proxy } = getCurrentInstance()
   import ItemBox from '../ItemBox/index.vue';
+  import { Item } from '/@/store/modules/genshinItem/types';
 
   const dialogVisible = ref(false);
   defineProps({
@@ -9,10 +10,15 @@
       type: Object,
     },
     avatars: {
-      // required: true,
-      type: Array,
+      required: true,
+      type: Array<Item>,
     },
   });
+  const onSelected = (avatar: Item) => {
+    dialogVisible.value = false;
+    emit('selected', avatar);
+  };
+  const emit = defineEmits<{ (event: 'selected', id: Item): void }>();
   const showDialog = () => {
     dialogVisible.value = !dialogVisible.value;
   };
@@ -37,16 +43,17 @@
     <el-dialog
       v-model="dialogVisible"
       title="选择角色"
-      :width="isMobile ? '80%' : '50%'"
+      destroy-on-close
+      :class="isMobile ? 'pt-0' : ''"
+      :width="isMobile ? '90%' : '50%'"
       :before-close="handleClose"
     >
-      <ul
-        class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 sm:px-20 lg:px-36 xl:px-20"
-      >
+      <ul class="flex flex-wrap items-center justify-center py-0 px-0">
         <li
           v-for="(item, index) in avatars"
           :key="index * 1.1"
-          class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8"
+          @click="onSelected(item)"
+          class="px-3 pt-4 md:pt-0 lg:pt-0 md:px-4 sm:pt-5 md:pb-8"
         >
           <ItemBox :name="item.name" :url="item.url" :star="item.star" />
         </li>

@@ -29,4 +29,14 @@ export const framework = [
     author: '以及使用率',
     icon: 'svg-arrow-circle-right',
   },
+  {
+    content: '角色搭配数据统计🤝',
+    avatar:
+      'https://img-static.mihoyo.com/communityweb/upload/65f11f5060c358b9be1e750dcbc10a25.png',
+    title: '他们都和谁并肩作战',
+    path: '/collocation',
+    color: 'from-red-600 to-amber-300',
+    author: '角色搭配情况',
+    icon: 'svg-arrow-circle-right',
+  },
 ];
