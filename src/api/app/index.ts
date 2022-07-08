@@ -1,16 +1,23 @@
 import { IAuthEntity } from './types';
-import { post } from '/@/utils/http/axios';
+// import { post } from '/@/utils/http/axios';
 
-// 物品映射数据
 enum URL {
-  auth = '/auth/login', // 角色映射列表，
+  auth = '/auth/login', // 获取accessToken
 }
 
 const getAccessToken = async (data: IAuthEntity) => {
-  return post({
-    url: URL.auth,
-    baseURL: import.meta.env.VITE_APP_API_AUTHURL || '',
-    data,
-  });
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+
+  const raw = JSON.stringify(data);
+
+  const url = `${import.meta.env.VITE_APP_API_AUTHURL}${URL.auth}`;
+
+  return fetch(url, {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow',
+  }).then((response) => response.text());
 };
 export { getAccessToken };

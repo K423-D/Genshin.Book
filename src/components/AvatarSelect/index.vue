@@ -46,7 +46,7 @@
     <div v-else>
       <ItemBox
         :name="'未选择角色'"
-        :url="'https://img-static.mihoyo.com/communityweb/upload/1911ab16b4af46252dbd90fc539d4fc5.png'"
+        :url="'https://img-static.mihoyo.com/communityweb/upload/1672ccf689e9977a149f12fd8d1e5f1e.png'"
         :star="1"
         @click="showDialog"
       />

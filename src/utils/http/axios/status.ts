@@ -11,6 +11,15 @@ export const showMessage = (status: number | string): string => {
     case 401:
       message = '权限异常，正在返回首页并更新信息(401)';
       clearToken();
+      if (router.currentRoute.value.path == '/') {
+        message = '权限异常，请手动刷新首页(401)';
+        ElMessage.error(`${message}`);
+      } else {
+        ElMessage.error(`${message}`);
+        setTimeout(() => {
+          router.push({ path: '/', params: { refreshToken: '1' } });
+        }, 1500);
+      }
       break;
     case 403:
       message = '拒绝访问(403)';
@@ -43,10 +52,5 @@ export const showMessage = (status: number | string): string => {
       message = `连接出错(${status})!`;
   }
   ElMessage.error(`${message}`);
-  setTimeout(() => {
-    if (router.currentRoute.value.path == '/') {
-      window.location.reload();
-    } else router.push('/');
-  }, 1500);
   return `${message}，请检查网络或联系管理员！`;
 };

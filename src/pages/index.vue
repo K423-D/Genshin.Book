@@ -8,10 +8,15 @@
   // import { useGenshinItemStore } from '../store/modules/genshinItem';
   import userOverview from '../hooks/userOverview';
   import Footer from '../components/footer/index.vue';
+  import { getToken } from '../utils/auth';
   // import useGenshinItem from '../hooks/useGenshinItem';
   const appStore = useAppStore();
   const data = ref(framework);
   const overview = userOverview();
+  const token = getToken();
+  if (!token) {
+    appStore.fetchAccessToken();
+  }
   document.title = `首页 | Genshin.Book`;
   watchEffect(() => {
     data.value[1].title = `本期有${overview.collectedPlayerCount}用户数据`;
