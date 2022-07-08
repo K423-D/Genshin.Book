@@ -18,6 +18,8 @@ const getAccessToken = async (data: IAuthEntity) => {
     headers: myHeaders,
     body: raw,
     redirect: 'follow',
-  }).then((response) => response.text());
+  })
+    .then((response) => response.text())
+    .then((res) => JSON.parse(res));
 };
 export { getAccessToken };

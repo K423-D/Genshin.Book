@@ -70,11 +70,11 @@
                   :star="genshinItem.avatarMap[item?.avatar || currentAvatar].star"
                 />
               </div>
-              <div class="flex flex-wrap justify-start items-center md:space-x-5">
+              <div class="flex flex-wrap justify-start items-center md:mx-2">
                 <div
                   v-for="(collocation, index) in item?.collocations"
                   :key="index"
-                  class="mr-1.5 py-2"
+                  class="mr-4 py-2"
                 >
                   <ItemBox
                     @click="currentAvatar = collocation.id"

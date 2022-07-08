@@ -1,6 +1,7 @@
 import {
   API_BASE_URL,
   API_TARGET_URL,
+  APP_API_AUTHURL,
   MOCK_API_BASE_URL,
   MOCK_API_TARGET_URL,
 } from '../../config/constant';
@@ -11,6 +12,11 @@ const init: ProxyTargetList = {
   // test
   [API_BASE_URL]: {
     target: API_TARGET_URL,
+    changeOrigin: true,
+    rewrite: (path) => path.replace(new RegExp(`^${API_BASE_URL}`), ''),
+  },
+  ['/auth']: {
+    target: APP_API_AUTHURL,
     changeOrigin: true,
     rewrite: (path) => path.replace(new RegExp(`^${API_BASE_URL}`), ''),
   },

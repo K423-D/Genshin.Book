@@ -44,15 +44,15 @@ export const useAppStore = defineStore(
           Appid: import.meta.env.VITE_APP_APPID as string,
           Secret: import.meta.env.VITE_APP_SECRET as string,
         };
-        const res = JSON.parse(await getAccessToken(data));
+        const res = await getAccessToken(data);
         console.log(res);
 
         if (res.data.accessToken) {
           setToken(res.data.accessToken);
           ElMessage.success('数据更新成功');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1500);
+          window.location.reload();
+          // setTimeout(() => {
+          // }, 1500);
         } else {
           ElMessage.error('获取数据失败，请刷新网页');
         }

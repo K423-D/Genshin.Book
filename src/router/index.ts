@@ -18,7 +18,7 @@ const router = createRouter({
 
 router.beforeEach(async (_to, _from, next) => {
   NProgress.start();
-  if (_to.path == '/' && _to.params.refreshToken === '1') {
+  if (_to.path == '/' && _to.query.refreshToken === '1') {
     const token = getToken();
     const appStore = useAppStore();
     if (!token) {

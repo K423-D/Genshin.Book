@@ -18,6 +18,7 @@ export const showMessage = (status: number | string): string => {
         ElMessage.error(`${message}`);
         setTimeout(() => {
           router.push({ path: '/', params: { refreshToken: '1' } });
+          return;
         }, 1500);
       }
       break;

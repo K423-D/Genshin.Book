@@ -9,13 +9,13 @@ axios.defaults.timeout = 5000;
 axios.defaults.withCredentials = false;
 // axios.defaults.headers.common['token'] =  AUTH_TOKEN
 // 允许跨域
-axios.defaults.headers.post['Access-Control-Allow-Origin-Type'] = '*';
+axios.defaults.headers['Access-Control-Allow-Origin-Type'] = '*';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_API_BASEURL + '',
-  headers: {
-    'Content-Type': 'application/json;charset=utf-8',
-  },
+  // headers: {
+  //   'Content-Type': 'application/json;charset=utf-8',
+  // },
   // transformRequest: [
   //   function (data) {
   //     //由于使用的 form-data传数据所以要格式化
