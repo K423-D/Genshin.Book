@@ -7,18 +7,19 @@
   import useGenshinItem from '/@/hooks/useGenshinItem';
   import { Item } from '/@/store/modules/genshinItem/types';
 
+  document.title = `圣遗物使用数据 | Genshin.Book`;
+
   const genshinItem = useGenshinItem();
   const avatarReliquaryUsage = useAvatarReliquaryUsage();
 
-  document.title = `圣遗物使用数据 | Genshin.Book`;
   console.log(avatarReliquaryUsage.data);
   const currentAvatar = ref<number>(10000002);
   const currentUsage = computed(() => {
     const res = avatarReliquaryUsage.data.find((item) => item.avatar == currentAvatar.value);
     return res;
   });
-  const changeAvatar = (avatar: Item) => {
-    currentAvatar.value = avatar.id;
+  const changeAvatar = (avatar: Item | undefined) => {
+    currentAvatar.value = avatar == undefined ? currentAvatar.value : avatar.id;
   };
 
   onMounted(() => {});
@@ -52,7 +53,7 @@
           </div> -->
           <AvatarSelect
             v-if="genshinItem.avatarMap[currentAvatar].name"
-            :avatar="genshinItem.avatarMap[currentAvatar]"
+            :avatar="genshinItem.avatarMap[currentAvatar] || {}"
             :avatars="genshinItem.avatars"
             @selected="changeAvatar"
           />

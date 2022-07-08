@@ -6,7 +6,7 @@
   const dialogVisible = ref(false);
   defineProps({
     avatar: {
-      required: true,
+      // required: true,
       type: Object,
     },
     avatars: {
@@ -18,7 +18,7 @@
     dialogVisible.value = false;
     emit('selected', avatar);
   };
-  const emit = defineEmits<{ (event: 'selected', id: Item): void }>();
+  const emit = defineEmits<{ (event: 'selected', id: Item | undefined): void }>();
   const showDialog = () => {
     dialogVisible.value = !dialogVisible.value;
   };
@@ -28,37 +28,48 @@
     return screenWidth < 600;
   });
   const handleClose = (done: () => void) => {
+    emit('selected', undefined);
     done();
   };
 </script>
 <template>
   <div class="flex justify-center items-center">
-    <ItemBox
-      class="max-w-fit"
-      :name="avatar.name"
-      :url="avatar.url"
-      :star="avatar.star"
-      @click="showDialog"
-    />
-    <el-dialog
-      v-model="dialogVisible"
-      title="选择角色"
-      destroy-on-close
-      :class="isMobile ? 'pt-0' : ''"
-      :width="isMobile ? '90%' : '50%'"
-      :before-close="handleClose"
-    >
-      <ul class="flex flex-wrap items-center justify-center py-0 px-0">
-        <li
-          v-for="(item, index) in avatars"
-          :key="index * 1.1"
-          @click="onSelected(item)"
-          class="px-3 pt-4 md:pt-0 lg:pt-0 md:px-4 sm:pt-5 md:pb-8"
-        >
-          <ItemBox :name="item.name" :url="item.url" :star="item.star" />
-        </li>
-      </ul>
-    </el-dialog>
+    <div v-if="avatar?.name">
+      <ItemBox
+        class="max-w-fit"
+        :name="avatar.name || ''"
+        :url="avatar.url || ''"
+        :star="avatar.star || ''"
+        @click="showDialog"
+      />
+    </div>
+    <div v-else>
+      <ItemBox
+        :name="'未选择角色'"
+        :url="'https://img-static.mihoyo.com/communityweb/upload/1911ab16b4af46252dbd90fc539d4fc5.png'"
+        :star="1"
+        @click="showDialog"
+      />
+    </div>
+    <div>
+      <el-dialog
+        v-model="dialogVisible"
+        title="选择角色"
+        destroy-on-close
+        :width="isMobile ? '90%' : '50%'"
+        :before-close="handleClose"
+      >
+        <ul class="flex flex-wrap items-center justify-center py-0 px-0">
+          <li
+            v-for="(item, index) in avatars"
+            :key="index * 1.1"
+            @click="onSelected(item)"
+            class="px-3 pt-4 md:pt-0 lg:pt-0 md:px-4 sm:pt-5 md:pb-8"
+          >
+            <ItemBox :name="item.name" :url="item.url" :star="item.star" />
+          </li>
+        </ul> </el-dialog
+    ></div>
   </div>
 </template>
 
