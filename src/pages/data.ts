@@ -10,13 +10,13 @@ export const framework = [
     icon: 'svg-arrow-circle-right',
   },
   {
-    content: '深渊角色使用率统计🌌',
+    content: '深渊角色出场率统计🌌',
     avatar:
       'https://img-static.mihoyo.com/communityweb/upload/1911ab16b4af46252dbd90fc539d4fc5.png',
-    title: '本期有0用户数据',
+    title: '角色出场次数<除以>',
     path: '/abyss',
     color: 'from-cyan-500 to-purple-600',
-    author: '本期有0用户满星',
+    author: '总出场次数',
     icon: 'svg-arrow-circle-right',
   },
   {

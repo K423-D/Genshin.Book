@@ -42,7 +42,7 @@
       <ul
         class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 sm:px-20 lg:px-36 xl:px-20"
       >
-        <li class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8">
+        <li class="px-0 pt-4 md:px-4 sm:pt-5 md:pb-8">
           <!-- <div class="flex justify-center items-center">
             <ItemBox
               class="max-w-fit"
@@ -60,17 +60,17 @@
           <div class="flex justify-center items-center mt-2 text-sm">
             <span>点击头像选择角色</span>
           </div>
-          <ul class="flex flex-wrap justify-between items-center">
+          <ul class="flex flex-wrap justify-center items-center">
             <el-card
               v-if="currentAvatar"
               v-for="(usage, j) in currentUsage?.reliquaryUsage"
               :key="j"
-              class="mt-6"
+              class="mt-6 mx-2 md:mx-4 lg:mx-4"
               ><li
-                class="flex flex-wrap justify-between items-center mx-1 px-2 rounded-lg border-red-600 border-opacity-25 dark:border-opacity-50 md:mx-4 lg:mx-4"
+                class="flex flex-wrap justify-between items-center md:px-2 rounded-lg border-red-600 border-opacity-25 dark:border-opacity-50 md:mx-4 lg:mx-4"
               >
                 <div
-                  class="flex justify-between items-center pr-2"
+                  class="flex justify-between items-center pr-2 md:pr-6"
                   :class="
                     k == 1 || usage.ids.length == 1
                       ? 'border-r border-gray-800 dark:border-gray-200 border-opacity-25 dark:border-opacity-25'
@@ -80,14 +80,16 @@
                   :key="k"
                 >
                   <ItemBox
-                    class="mr-2"
+                    class="mr-0 md:mr-2 lg:mr-2 first:md:pr-4"
                     :name="`${reliquary.suit}件套`"
                     :url="genshinItem.reliquaryMap[reliquary.id].url"
                     :star="genshinItem.reliquaryMap[reliquary.id].star"
                   />
-                  <div class="mx-2 md:mx-6 lg:mx-6" v-if="usage.ids.length == 2 && k == 0">+</div>
+                  <div class="mx-2 md:mx-4 lg:mx-4" v-if="usage.ids.length == 2 && k == 0">+</div>
                 </div>
-                <div class="text-center ml-2 w-14">{{ `${usage.value}%` }}</div>
+                <div class="text-center pl-2 md:pl-10 lg:pl-10 md:text-lg lg:text-lg">{{
+                  `${usage.value}%`
+                }}</div>
               </li>
             </el-card>
           </ul>

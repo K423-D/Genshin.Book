@@ -16,7 +16,7 @@ export const useAvatarParticipationStore = defineStore('avatarParticipation', {
     },
     async fetchAvatarParticipation() {
       const res = await getAvatarParticipation();
-      res.sort((a, b) => a.floor - b.floor);
+      res.sort((a, b) => b.floor - a.floor);
       res.map((item) => {
         item.avatarUsage.sort((a, b) => b.value - a.value);
         item.avatarUsage.map((el) => {

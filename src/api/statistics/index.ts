@@ -1,5 +1,5 @@
-import { get } from '/@/utils/fetch';
-// import { get } from '/@/utils/http/axios';
+// import { get } from '/@/utils/fetch';
+import { get } from '/@/utils/http/axios';
 
 enum URL {
   overview = '/Statistics/Overview', // 总览数据，

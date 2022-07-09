@@ -14,7 +14,8 @@ const request = (config) => {
     myHeaders.Authorization = `${TokenPrefix}${token}`;
   }
 
-  let url = `${import.meta.env.VITE_APP_API_BASEURL}${config.url}`;
+  let url = `${config.url}`;
+  // let url = `${import.meta.env.VITE_APP_API_BASEURL}${config.url}`;
   console.log(url);
   console.log(myHeaders);
 

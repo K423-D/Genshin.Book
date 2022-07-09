@@ -6,27 +6,31 @@
   import userOverview from '/@/hooks/userOverview';
   import useAvatarParticipation from '/@/hooks/useAvatarParticipation';
 
+  const currentFloor = ref(0);
+
   const appStore = useAppStore();
   const overview = userOverview();
-  const currentUsage = computed(() => {
-    return avatarParticipation.data[currentFloor.value - 9].avatarUsage;
-  });
   const genshinItem = useGenshinItem();
   const avatarParticipation = useAvatarParticipation();
-  const currentFloor = ref(9);
+
+  const currentUsage = computed(() => {
+    return avatarParticipation.data[currentFloor.value].avatarUsage;
+  });
 
   document.title = `深渊角色使用率 | Genshin.Book`;
 
   onMounted(() => {});
   const handleFloorChange = (index: number) => {
-    currentFloor.value = index + 8;
+    currentFloor.value = index - 1;
   };
 </script>
 <template>
   <div class="dark:text-slate-400 dark:bg-slate-900 min-h-screen">
     <Header></Header>
     <!-- 概览 -->
-    <main class="max-w-5xl px-4 mx-auto pb-22 sm:px-6 md:px-8 xl:px-12 xl:max-w-6xl">
+    <main
+      class="max-w-5xl px-4 mx-auto pb-22 sm:px-6 md:px-8 xl:px-12 xl:max-w-6xl md:hidden lg:hidden"
+    >
       <div class="pt-8 pb-0 md:pb-7 lg:pb-7 xl:pb-7 2xl:pb-7 sm:pb-8 sm:text-center">
         <h1
           class="relative mt-12 mb-4 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
@@ -35,7 +39,7 @@
         </h1>
       </div>
     </main>
-    <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
+    <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44 md:hidden lg:hidden">
       <ul class="flex flex-wrap items-center justify-center py-0 sm:px-20 lg:px-36 xl:px-20">
         <li class="px-3 md:px-4 md:pb-8">
           <div>
@@ -71,9 +75,9 @@
         color="#9333EA"
         size="small"
         :dark="appStore.theme == 'dark'"
-        :disabled="i + 8 == currentFloor"
+        :disabled="i - 1 == currentFloor"
         @click="handleFloorChange(i)"
-        >{{ `第${i + 8}层` }}</el-button
+        >{{ `第${13 - i}层` }}</el-button
       >
     </div>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">

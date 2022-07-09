@@ -12,7 +12,7 @@ axios.defaults.withCredentials = false;
 axios.defaults.headers['Access-Control-Allow-Origin-Type'] = '*';
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_APP_API_BASEURL + '',
+  baseURL: import.meta.env.VITE_APP_API_BASEURL,
   // headers: {
   //   'Content-Type': 'application/json;charset=utf-8',
   // },

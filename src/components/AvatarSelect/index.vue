@@ -56,6 +56,7 @@
         v-model="dialogVisible"
         title="选择角色"
         destroy-on-close
+        append-to-body
         :width="isMobile ? '90%' : '50%'"
         :before-close="handleClose"
       >

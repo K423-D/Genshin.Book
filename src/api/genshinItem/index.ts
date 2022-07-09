@@ -1,5 +1,5 @@
-// import { get } from '/@/utils/http/axios';
-import { get } from '/@/utils/fetch';
+import { get } from '/@/utils/http/axios';
+// import { get } from '/@/utils/fetch';
 
 // 物品映射数据
 enum URL {

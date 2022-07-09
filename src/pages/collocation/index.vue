@@ -37,7 +37,7 @@
         >
           <span class="border-b-2 border-b-amber-300">角色搭配数据</span>
         </h1>
-        <h5 class="text-sm">展示八位和角色搭配最多的队友</h5>
+        <h5 class="text-sm">展示至多八位和角色搭配最多的队友</h5>
       </div>
     </main>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
@@ -62,7 +62,7 @@
           <el-card>
             <div class="flex justify-between items-center">
               <div
-                class="pr-4 mr-4 border-r border-gray-800 dark:border-gray-200 border-opacity-25 dark:border-opacity-25"
+                class="pr-5 px-2 md:pr-8 md:pl-0 lg:ml-4 mr-4 border-r border-gray-800 dark:border-gray-200 border-opacity-25 dark:border-opacity-25"
               >
                 <ItemBox
                   :name="genshinItem.avatarMap[item?.avatar || currentAvatar].name"
@@ -70,11 +70,11 @@
                   :star="genshinItem.avatarMap[item?.avatar || currentAvatar].star"
                 />
               </div>
-              <div class="flex flex-wrap justify-start items-center md:mx-2">
+              <div class="flex flex-wrap justify-center items-center md:mx-2">
                 <div
                   v-for="(collocation, index) in item?.collocations"
                   :key="index"
-                  class="mr-4 py-2"
+                  class="mr-1.5 py-2 md:mx-2 lg:mx-2"
                 >
                   <ItemBox
                     @click="currentAvatar = collocation.id"

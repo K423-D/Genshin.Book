@@ -4,11 +4,13 @@
   import { useDark, useToggle } from '@vueuse/core';
   import { useAppStore } from '/@/store';
   import { Sunny, Moon } from '@element-plus/icons-vue';
+  import userOverview from '/@/hooks/userOverview';
 
   // const title = ref('I want to study typescript')
   // 检测浏览器系统主题
   // const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)')
   const appStore = useAppStore();
+  const overview = userOverview();
   // const useStore = useUserStore()
   const theme = computed(() => {
     return appStore.theme;
@@ -43,6 +45,24 @@
               class="mr-3 flex-none w-[2.0625rem] md:w-auto leading-6 dark:text-slate-200"
               >{{ appStore.projectName }}</router-link
             >
+            <ul class="hidden md:flex lg:flex flex-1 flex-wrap items-center justify-center text-sm">
+              <li class="px-3">
+                <div>
+                  <span>全部用户数量：</span><span>{{ overview?.totalPlayerCount }}</span>
+                </div>
+              </li>
+              <li class="px-3">
+                <div>
+                  <span>当期提交深渊数据用户数量：</span
+                  ><span>{{ overview?.collectedPlayerCount }}</span>
+                </div>
+              </li>
+              <li class="px-3">
+                <div>
+                  <span>当期满星用户数量：</span><span>{{ overview?.fullStarPlayerCount }}</span>
+                </div>
+              </li>
+            </ul>
             <div class="relative items-center ml-auto lg:flex">
               <!-- <nav class="text-sm font-semibold leading-6 text-slate-700 dark:text-slate-200">
                 <ul class="flex space-x-8">
