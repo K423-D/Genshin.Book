@@ -296,7 +296,7 @@
 </template>
 <style lang="less" scoped>
   .chart {
-    width: calc(100vh - 20rem - 2rem);
+    width: calc(100vw - 20rem -2rem);
     // height: 2000px;
   }
 </style>
