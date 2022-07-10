@@ -15,5 +15,8 @@ export function keepTwoDecimalFull(num) {
   while (s_x.length <= pos_decimal + 2) {
     s_x += '0';
   }
+  while (s_x.length < 5) {
+    s_x = `0${s_x}`;
+  }
   return s_x;
 }

@@ -20,13 +20,13 @@ export const framework = [
     icon: 'svg-arrow-circle-right',
   },
   {
-    content: '角色圣遗物使用率统计🧰',
+    content: '角色装备使用率统计🧰',
     avatar:
       'https://img-static.mihoyo.com/communityweb/upload/a76fa2eefd16e5e133232afdcc16f606.png',
-    title: '圣遗物套装',
-    path: '/reliquary',
+    title: '圣遗物套装以及武器',
+    path: '/equipment',
     color: 'from-purple-500 to-red-600',
-    author: '以及使用率',
+    author: '各自的使用率',
     icon: 'svg-arrow-circle-right',
   },
   {
@@ -37,6 +37,16 @@ export const framework = [
     path: '/collocation',
     color: 'from-red-600 to-amber-300',
     author: '角色搭配情况',
+    icon: 'svg-arrow-circle-right',
+  },
+  {
+    content: '角色命座数据统计🤝',
+    avatar:
+      'https://img-static.mihoyo.com/communityweb/upload/276b2aa8fdfca9fb31dab729bb55f959.png',
+    title: '角色持有率',
+    path: '/constellation',
+    color: 'from-amber-300 to-gray-400',
+    author: '角色各命座占比',
     icon: 'svg-arrow-circle-right',
   },
 ];

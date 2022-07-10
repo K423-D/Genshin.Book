@@ -4,7 +4,8 @@ import { get } from '/@/utils/http/axios';
 enum URL {
   overview = '/Statistics/Overview', // 总览数据，
   avatarParticipation = '/Statistics/AvatarParticipation', // 角色出场数据，
-  avatarReliquaryUsage = '/Statistics/AvatarReliquaryUsage', // 圣遗物数据，
+  avatarReliquaryUsage = '/Statistics/avatarReliquaryUsage', // 圣遗物数据，
+  AvatarWeaponUsage = '/Statistics/AvatarWeaponUsage', // 圣遗物数据，
   teamCollocation = '/Statistics/TeamCollocation', // 角色搭配数据
   constellation = '/Statistics/Constellation', // 命座数据
   teamCombination = '/Statistics/TeamCombination', // 队伍出场数据
@@ -18,6 +19,9 @@ const getAvatarParticipation = async () => {
 };
 const getAvatarReliquaryUsage = async () => {
   return get({ url: URL.avatarReliquaryUsage });
+};
+const getAvatarWeaponUsage = async () => {
+  return get({ url: URL.AvatarWeaponUsage });
 };
 const getTeamCollocation = async () => {
   return get({ url: URL.teamCollocation });
@@ -33,6 +37,7 @@ export {
   getOverview,
   getAvatarParticipation,
   getAvatarReliquaryUsage,
+  getAvatarWeaponUsage,
   getTeamCollocation,
   getConstellation,
   getTeamCombination,

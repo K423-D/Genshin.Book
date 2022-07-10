@@ -24,8 +24,7 @@
   };
   const isMobile = computed(() => {
     const screenWidth = document.body.clientWidth;
-    console.log(screenWidth);
-    return screenWidth < 600;
+    return screenWidth < 640;
   });
   const handleClose = (done: () => void) => {
     emit('selected', undefined);

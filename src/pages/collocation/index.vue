@@ -22,7 +22,6 @@
   const changeAvatar = (avatar: Item | undefined) => {
     currentAvatar.value = avatar == undefined ? 0 : avatar.id;
   };
-  console.log(teamCollocation);
 
   onMounted(() => {});
 </script>

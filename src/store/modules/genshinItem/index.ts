@@ -41,41 +41,105 @@ export const useGenshinItemStore = defineStore('genshinItem', {
     },
     // 获取角色映射列表
     async fetchAvatar() {
-      const res = await getAvatar();
-      const arr = _.cloneDeep(this.avatarMap);
-      let d: Item[] = res.map((item) => {
-        item.star = arr[item.id] ? arr[item.id].star : 0;
-        // 处理角色总数据
-        arr[item.id] = Object.assign({}, arr[item.id], item);
-        return item;
-      });
-      d.sort((a, b) => a.id - b.id);
+      let arr;
+      let d: Item[];
+
+      const a = localStorage.getItem('Avatar');
+      const now = new Date().getTime();
+
+      // 判断是否过期
+      if (a && JSON.parse(a).time + 7 * 24 * 60 * 60 * 1000 >= now) {
+        arr = JSON.parse(a).avatarMap;
+        d = JSON.parse(a).avatars;
+      } else {
+        localStorage.removeItem('Avatar');
+        const res = await getAvatar();
+        arr = _.cloneDeep(this.avatarMap);
+        d = res.map((item) => {
+          if (item.id === 10000005) item.name = `${item.name}(男)`;
+          if (item.id === 10000007) item.name = `${item.name}(女)`;
+
+          item.star = arr[item.id] ? arr[item.id].star : 0;
+          // 处理角色总数据
+          arr[item.id] = Object.assign({}, arr[item.id], item);
+          return item;
+        });
+        d.sort((a, b) => a.id - b.id);
+        // 缓存加上时间戳缓存到localstorage
+        const _avatars = {
+          avatars: d,
+          avatarMap: arr,
+          time: now,
+        };
+        localStorage.setItem('Avatar', JSON.stringify(_avatars));
+      }
+
       this.setAvatar(d);
       this.$patch({ avatarMap: arr });
     },
     // 获取武器映射列表
     async fetchWeapon() {
-      const res = await getWeapon();
-      const arr = _.cloneDeep(this.weaponMap);
-      let d: any[] = res.map((item) => {
-        item.star = arr[item.id] ? arr[item.id].star : 0;
-        arr[item.id] = Object.assign({}, arr[item.id], item);
-        return item;
-      });
-      d.sort((a, b) => a.id - b.id);
+      let arr;
+      let d: Item[];
+
+      const a = localStorage.getItem('Weapon');
+      const now = new Date().getTime();
+
+      if (a && JSON.parse(a).time + 7 * 24 * 60 * 60 * 1000 >= now) {
+        arr = JSON.parse(a).weaponMap;
+        d = JSON.parse(a).weapons;
+      } else {
+        localStorage.removeItem('Weapon');
+        const res = await getWeapon();
+        arr = _.cloneDeep(this.weaponMap);
+        d = res.map((item) => {
+          item.star = arr[item.id] ? arr[item.id].star : 0;
+          arr[item.id] = Object.assign({}, arr[item.id], item);
+          return item;
+        });
+        d.sort((a, b) => a.id - b.id);
+
+        const _weapon = {
+          weapons: d,
+          weaponMap: arr,
+          time: now,
+        };
+        localStorage.setItem('Weapon', JSON.stringify(_weapon));
+      }
+
       this.setWeapon(d);
       this.$patch({ weaponMap: arr });
     },
     // 获取圣遗物映射列表
     async fetchReliquries() {
-      const res = await getReliquaries();
-      const arr = _.cloneDeep(this.reliquaryMap);
-      let d: any[] = res.map((item) => {
-        item.star = arr[item.id] ? arr[item.id].star : 0;
-        arr[item.id] = Object.assign({}, arr[item.id], item);
-        return item;
-      });
-      d.sort((a, b) => a.id - b.id);
+      let arr;
+      let d: Item[];
+
+      const a = localStorage.getItem('Reliquary');
+      const now = new Date().getTime();
+
+      if (a && JSON.parse(a).time + 7 * 24 * 60 * 60 * 1000 >= now) {
+        arr = JSON.parse(a).reliquaryMap;
+        d = JSON.parse(a).reliquaries;
+      } else {
+        localStorage.removeItem('Reliquary');
+        const res = await getReliquaries();
+        arr = _.cloneDeep(this.reliquaryMap);
+        d = res.map((item) => {
+          item.star = arr[item.id] ? arr[item.id].star : 0;
+          arr[item.id] = Object.assign({}, arr[item.id], item);
+          return item;
+        });
+        d.sort((a, b) => a.id - b.id);
+
+        const _reliquary = {
+          reliquaries: d,
+          reliquaryMap: arr,
+          time: now,
+        };
+        localStorage.setItem('Reliquary', JSON.stringify(_reliquary));
+      }
+
       this.setReliquaries(d);
       this.$patch({ reliquaryMap: arr });
     },
