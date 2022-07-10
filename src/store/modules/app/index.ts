@@ -45,7 +45,7 @@ export const useAppStore = defineStore(
           Secret: import.meta.env.VITE_APP_SECRET as string,
         };
         const res = await getAccessToken(data);
-        console.log(res);
+        // console.log(res);
 
         if (res.data.accessToken) {
           setToken(res.data.accessToken);

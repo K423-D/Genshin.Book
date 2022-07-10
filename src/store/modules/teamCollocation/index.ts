@@ -26,7 +26,7 @@ export const useTeamCollocationStore = defineStore('teamCollocation', {
         }));
         return { avatar: item.avatar, collocations: arr };
       });
-      console.log(d);
+      // console.log(d);
 
       this.setTeamCollocation(d);
     },

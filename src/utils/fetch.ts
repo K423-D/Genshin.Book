@@ -2,7 +2,7 @@ import { getToken, TokenPrefix, whiteList } from './auth';
 import { showMessage } from './http/axios/status';
 
 const request = (config) => {
-  console.log(config.url);
+  // console.log(config.url);
   let myHeaders: any = {
     'Content-Type': 'text/json; charset=utf-8',
   };
@@ -16,8 +16,8 @@ const request = (config) => {
 
   let url = `${config.url}`;
   // let url = `${import.meta.env.VITE_APP_API_BASEURL}${config.url}`;
-  console.log(url);
-  console.log(myHeaders);
+  // console.log(url);
+  // console.log(myHeaders);
 
   return fetch(url, {
     method: config.method,
@@ -48,8 +48,8 @@ const request = (config) => {
       }
       return data || {};
     })
-    .catch((err) => {
-      console.log(err);
+    .catch((_) => {
+      // console.log(err);
     });
 };
 

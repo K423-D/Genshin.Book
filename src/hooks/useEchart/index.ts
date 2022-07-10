@@ -55,7 +55,7 @@ export default function useEchart(
   function watchEl() {
     // 给元素添加过渡
     if (animation) {
-      elRef.value.style.transition = 'width 1s, height 1s';
+      elRef.value.style.transition = 'width 0.5s, height 0.5s';
     }
     const resizeObserver = new ResizeObserver((_) => resize());
     resizeObserver.observe(elRef.value);

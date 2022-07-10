@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { onMounted, Ref, ref, computed, nextTick } from 'vue';
-  import type { EChartsOption } from 'echarts';
+  import { onMounted, Ref, ref, nextTick } from 'vue';
+  // import type { EChartsOption } from 'echarts';
   import useEchart from '/@/hooks/useEchart';
   import { RenderType, ThemeType } from '/@/hooks/useEchart/types';
   import Header from '/@/components/Header/index.vue';
@@ -11,35 +11,33 @@
   document.title = `角色命座 | Genshin.Book`;
 
   const genshinItem = useGenshinItem();
+  let avatarMap = genshinItem.avatarMap;
   const constellation = useConstellation();
-  const isMobile = computed(() => {
-    const screenWidth = document.body.clientWidth;
-    return screenWidth < 640;
-  });
+  let isMobile = document.body.clientWidth < 600;
 
   // 图表数据
-  const yData = ref<string[]>([]);
-  const holdingArr = ref<number[]>([]);
-  const zeroArr = ref<number[]>([]);
-  const oneArr = ref<number[]>([]);
-  const twoArr = ref<number[]>([]);
-  const threeArr = ref<number[]>([]);
-  const fourArr = ref<number[]>([]);
-  const fiveArr = ref<number[]>([]);
-  const sixArr = ref<number[]>([]);
+  let yData: string[] = [];
+  let holdingArr: number[] = [];
+  let zeroArr: number[] = [];
+  let oneArr: number[] = [];
+  let twoArr: number[] = [];
+  let threeArr: number[] = [];
+  let fourArr: number[] = [];
+  let fiveArr: number[] = [];
+  let sixArr: number[] = [];
 
   const formatter = (params) => {
     const str = `${keepTwoDecimalFull((params.data as number) * 100)}%`;
     return str;
   };
-  const yAxisRich = computed<Object>(() => {
-    let obj = {};
-    yData.value.map((item) => {
+  const yAxisRich = (yData) => {
+    let obj: any = {};
+    yData.map((item) => {
       // const r = genshinItem.avatars.find((o) => o.name == item);
       obj[`${item}`] = {
         backgroundColor: {
           // image: r!.url,
-          image: genshinItem.avatarMap[item].url,
+          image: avatarMap[item].url,
         },
         align: 'center',
         height: 40,
@@ -47,8 +45,9 @@
       };
     });
     return obj;
-  });
-  const option = computed<EChartsOption>(() => ({
+  };
+  // const option = computed<EChartsOption>(() => ());
+  const option = {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -56,7 +55,7 @@
         type: 'shadow', // 'shadow' as default; can also be 'line' or 'shadow'
       },
       formatter: (params) => {
-        let axisValueLabel = genshinItem.avatarMap[params[0].axisValueLabel].name;
+        let axisValueLabel = avatarMap[params[0].axisValueLabel].name;
         let str0 = '';
         params.forEach((item, idx) => {
           // str1+=`${}`
@@ -69,7 +68,20 @@
         return axisValueLabel + '<br>' + str0;
       },
     },
-    legend: {},
+    legend: {
+      data: ['持有率', '0命', '1命', '2命', '3命', '4命', '5命', '6命'],
+      selectedMode: 'multiple',
+      selected: {
+        持有率: true,
+        '0命': true,
+        '1命': true,
+        '2命': true,
+        '3命': true,
+        '4命': true,
+        '5命': true,
+        '6命': true,
+      },
+    },
     grid: {
       left: '0%',
       right: '0%',
@@ -78,7 +90,10 @@
     },
     xAxis: {
       type: 'value',
-      splitNumber: isMobile.value ? 10 : 50,
+      splitNumber: isMobile ? 10 : 50,
+      splitLine: {
+        show: true,
+      },
       axisLabel: {
         formatter: (params: number) => {
           return `${Math.ceil(params * 100)}%`;
@@ -87,12 +102,15 @@
     },
     yAxis: {
       type: 'category',
-      data: yData.value,
+      data: yData,
+      splitLine: {
+        show: true,
+      },
       axisLabel: {
         formatter: (value) => {
           return '{' + value + '| }';
         },
-        rich: yAxisRich.value as any,
+        rich: {},
       },
     },
     series: [
@@ -100,107 +118,107 @@
         name: '持有率',
         type: 'bar',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: holdingArr.value,
+        data: holdingArr,
       },
       {
         name: '0命',
         type: 'bar',
         stack: 'total',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: zeroArr.value,
+        data: zeroArr,
       },
       {
         name: '1命',
         type: 'bar',
         stack: 'total',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: oneArr.value,
+        data: oneArr,
       },
       {
         name: '2命',
         type: 'bar',
         stack: 'total',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: twoArr.value,
+        data: twoArr,
       },
       {
         name: '3命',
         type: 'bar',
         stack: 'total',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: threeArr.value,
+        data: threeArr,
       },
       {
         name: '4命',
         type: 'bar',
         stack: 'total',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: fourArr.value,
+        data: fourArr,
       },
       {
         name: '5命',
         type: 'bar',
         stack: 'total',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: fiveArr.value,
+        data: fiveArr,
       },
       {
         name: '6命',
         type: 'bar',
         stack: 'total',
         label: {
-          show: !isMobile.value,
+          show: !isMobile,
           formatter,
         },
         emphasis: {
-          focus: 'series',
+          focus: isMobile ? 'series' : 'none',
         },
-        data: sixArr.value,
+        data: sixArr,
       },
     ],
-  }));
+  };
   const chartEl = ref<HTMLDivElement | null>(null);
   const { setOption, showLoading } = useEchart(
     chartEl as Ref<HTMLDivElement>,
@@ -211,44 +229,47 @@
   );
   const refreshData = () => {
     // barData.value = [820, 932, 901, 934, 1290, 1330, 1320];
-    setOption(option.value);
+    const _rich = yAxisRich(yData);
+    option.yAxis.axisLabel.rich = _rich;
+    setOption(option as any);
   };
 
   watchEffect(() => {
     const data = constellation.data;
+    avatarMap = genshinItem.avatarMap;
     data.map((item) => {
       // 处理图表y轴内容
-      yData.value.unshift(`${item.avatar}`);
+      yData.unshift(`${item.avatar}`);
       // yData.value.unshift(genshinItem.avatarMap[item.avatar].name);
-      holdingArr.value.unshift(item.holdingRate);
+      holdingArr.unshift(item.holdingRate);
       item.rate.map((el) => {
         switch (el.id) {
           case 0:
-            zeroArr.value.unshift(el.value);
+            zeroArr.unshift(el.value);
             // zeroArr.value.unshift(parseFloat(el.value));
             break;
           case 1:
-            oneArr.value.unshift(el.value);
+            oneArr.unshift(el.value);
             // oneArr.value.unshift(parseFloat(el.value));
             break;
           case 2:
             // twoArr.value.unshift(parseFloat(el.value));
-            twoArr.value.unshift(el.value);
+            twoArr.unshift(el.value);
             break;
           case 3:
-            threeArr.value.unshift(el.value);
+            threeArr.unshift(el.value);
             // threeArr.value.unshift(parseFloat(el.value));
             break;
           case 4:
-            fourArr.value.unshift(el.value);
+            fourArr.unshift(el.value);
             // fourArr.value.unshift(parseFloat(el.value));
             break;
           case 5:
-            fiveArr.value.unshift(el.value);
+            fiveArr.unshift(el.value);
             // fiveArr.value.unshift(parseFloat(el.value));
             break;
           case 6:
-            sixArr.value.unshift(el.value);
+            sixArr.unshift(el.value);
             // sixArr.value.unshift(parseFloat(el.value));
             break;
           default:

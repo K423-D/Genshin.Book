@@ -13,7 +13,7 @@ export const framework = [
     content: '深渊角色出场率统计🌌',
     avatar:
       'https://img-static.mihoyo.com/communityweb/upload/1911ab16b4af46252dbd90fc539d4fc5.png',
-    title: '角色出场次数<除以>',
+    title: '角色出场次数除以',
     path: '/abyss',
     color: 'from-cyan-500 to-purple-600',
     author: '总出场次数',
