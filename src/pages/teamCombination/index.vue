@@ -102,7 +102,7 @@
                   </div>
                   <el-divider class="my-0" />
                   <div class="text-sm text-center mt-2 font-bold">{{
-                    `使用比率：${team.value}%`
+                    `使用次数：${team.value}`
                   }}</div>
                 </el-card>
               </div>
