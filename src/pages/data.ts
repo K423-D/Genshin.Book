@@ -49,4 +49,14 @@ export const framework = [
     author: '角色各命座占比',
     icon: 'svg-arrow-circle-right',
   },
+  {
+    content: '队伍出场数据统计🤝',
+    avatar:
+      'https://img-static.mihoyo.com/communityweb/upload/612c5572f5c3ae23ee86e9102b380d74.png',
+    title: '队伍出场数据',
+    path: '/teamCombination',
+    color: 'from-gray-400 to-violet-500',
+    author: '队伍出场数据',
+    icon: 'svg-arrow-circle-right',
+  },
 ];

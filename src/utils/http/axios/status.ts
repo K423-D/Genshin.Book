@@ -14,12 +14,13 @@ export const showMessage = (status: number | string): string => {
       if (router.currentRoute.value.path == '/') {
         message = '权限异常，请手动刷新首页(401)';
         ElMessage.error(`${message}`);
+        return message;
       } else {
         ElMessage.error(`${message}`);
         setTimeout(() => {
           router.push({ path: '/', params: { refreshToken: '1' } });
-          return;
         }, 1500);
+        return message;
       }
       break;
     case 403:
