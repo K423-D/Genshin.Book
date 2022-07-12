@@ -40,7 +40,7 @@ export const framework = [
     icon: 'svg-arrow-circle-right',
   },
   {
-    content: '角色命座数据统计🤝',
+    content: '角色命座数据统计✨',
     avatar:
       'https://img-static.mihoyo.com/communityweb/upload/276b2aa8fdfca9fb31dab729bb55f959.png',
     title: '角色持有率',
@@ -50,13 +50,23 @@ export const framework = [
     icon: 'svg-arrow-circle-right',
   },
   {
-    content: '队伍出场数据统计🤝',
+    content: '队伍使用数据统计（按层）👨‍👩‍👧‍👦',
+    avatar:
+      'https://img-static.mihoyo.com/communityweb/upload/39a8216c390b0c7943dfb4df6e740031.png',
+    title: '最常用的队伍',
+    path: '/combination-floor',
+    color: 'from-gray-400 to-violet-500',
+    author: '按每一层统计',
+    icon: 'svg-arrow-circle-right',
+  },
+  {
+    content: '队伍使用数据统计（按间）👨‍👩‍👧‍👦',
     avatar:
       'https://img-static.mihoyo.com/communityweb/upload/612c5572f5c3ae23ee86e9102b380d74.png',
-    title: '队伍出场数据',
-    path: '/teamCombination',
-    color: 'from-gray-400 to-violet-500',
-    author: '队伍出场数据',
+    title: '最常用的队伍',
+    path: '/combination-room',
+    color: 'from-violet-500 to-yellow-300',
+    author: '按每一间统计',
     icon: 'svg-arrow-circle-right',
   },
 ];

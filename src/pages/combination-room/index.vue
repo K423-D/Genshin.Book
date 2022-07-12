@@ -3,7 +3,7 @@
   import Header from '/@/components/Header/index.vue';
   import useGenshinItem from '/@/hooks/useGenshinItem';
 
-  document.title = `队伍出场数据 | Genshin.Book`;
+  document.title = `队伍使用数据 | Genshin.Book`;
   const currentFloor = ref(12);
   const currentIndex = ref(3);
   const genshinItem = useGenshinItem();
@@ -14,15 +14,14 @@
 <template>
   <div class="dark:text-slate-400 dark:bg-slate-900 min-h-screen">
     <Header></Header>
-    <!-- 角色搭配 -->
     <main class="max-w-5xl px-4 mx-auto pb-22 sm:px-6 md:px-8 xl:px-12 xl:max-w-6xl">
       <div class="pt-8 pb-0 md:pb-7 lg:pb-7 xl:pb-7 2xl:pb-7 sm:pb-8 sm:text-center">
         <h1
           class="relative mt-12 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
-          <span class="border-b-2 border-b-violet-500">队伍搭配数据</span>
+          <span class="border-b-2 border-b-violet-500">队伍使用数据（按间）</span>
         </h1>
-        <h5 class="text-sm">深渊各层最常用的一些队伍搭配</h5>
+        <h5 class="text-sm">深渊各间最常用的一些队伍搭配</h5>
       </div>
     </main>
     <div class="flex justify-center items-center my-5">
@@ -44,16 +43,6 @@
       <ul
         class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 px-5 sm:px-10 md:px-10 lg:px-10 xl:px-10"
       >
-        <!-- <li class="w-full mt-6 md:mt-0 lg:mt-0 flex flex-col">
-          <AvatarSelect
-            :avatar="genshinItem.avatarMap[currentAvatar] || {}"
-            :avatars="genshinItem.avatars"
-            @selected="changeAvatar"
-          />
-          <div class="flex justify-center items-center mt-2 text-sm">
-            <span>点击头像选择角色</span>
-          </div>
-        </li> -->
         <li
           v-for="(item, index) in teamCombination.data"
           :key="index * 1.1"

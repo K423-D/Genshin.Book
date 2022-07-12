@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { ElMessage } from 'element-plus';
 import { showMessage } from './status';
 import { IResponse } from './type';
 import { getToken, TokenPrefix, whiteList } from '/@/utils/auth';
@@ -90,6 +91,7 @@ const request = <T = any>(config: AxiosRequestConfig): Promise<T> => {
         const {
           data: { data },
         } = res;
+        ElMessage.success(res.data.message);
         resolve(data as T);
       });
   });

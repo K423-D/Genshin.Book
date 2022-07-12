@@ -8,7 +8,7 @@ enum URL {
   AvatarWeaponUsage = '/Statistics/AvatarWeaponUsage', // 圣遗物数据，
   teamCollocation = '/Statistics/TeamCollocation', // 角色搭配数据
   constellation = '/Statistics/Constellation', // 命座数据
-  teamCombination = '/Statistics/TeamCombination', // 队伍出场数据
+  teamCombination = '/Statistics/TeamCombination', // 队伍使用数据
 }
 
 const getOverview = async () => {
