@@ -4,20 +4,20 @@
   import useGenshinItem from '/@/hooks/useGenshinItem';
   import { useAppStore } from '/@/store';
   import userOverview from '/@/hooks/userOverview';
-  import useAvatarParticipation from '/@/hooks/useAvatarParticipation';
+  import useAvatarParticipation2 from '/@/hooks/useAvatarParticipation2';
 
   const currentFloor = ref(0);
 
   const appStore = useAppStore();
   const overview = userOverview();
   const genshinItem = useGenshinItem();
-  const avatarParticipation = useAvatarParticipation();
+  const avatarParticipation = useAvatarParticipation2();
 
   const currentUsage = computed(() => {
     return avatarParticipation.data[currentFloor.value].avatarUsage;
   });
 
-  document.title = `深渊角色出场率 | Genshin.Book`;
+  document.title = `深渊角色使用率 | Genshin.Book`;
 
   onMounted(() => {});
   const handleFloorChange = (index: number) => {
@@ -35,7 +35,7 @@
         <h1
           class="relative mt-12 mb-4 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
-          <span class="border-b-2 border-b-purple-600">概览</span>
+          <span class="border-b-2 border-b-green-600">概览</span>
         </h1>
       </div>
     </main>
@@ -64,7 +64,7 @@
         <h1
           class="relative mb-4 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10"
         >
-          <span class="border-b-2 border-b-purple-600">角色出场数据</span>
+          <span class="border-b-2 border-b-green-600">角色出场数据</span>
         </h1>
       </div>
     </main>
@@ -72,7 +72,7 @@
       <el-button
         v-for="i in 4"
         :key="i"
-        color="#9333EA"
+        color="#16A34A"
         size="small"
         :dark="appStore.theme == 'dark'"
         :disabled="i - 1 == currentFloor"

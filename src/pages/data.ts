@@ -20,6 +20,16 @@ export const framework = [
     icon: 'svg-arrow-circle-right',
   },
   {
+    content: '深渊角色使用率统计🌌',
+    avatar:
+      'https://img-static.mihoyo.com/communityweb/upload/a7b34f7d13a20b8c50015367b3d56fa9.png',
+    title: '角色出场次数除以',
+    path: '/abyss2',
+    color: 'from-yellow-300 to-green-600',
+    author: '持有该角色的纪录次数',
+    icon: 'svg-arrow-circle-right',
+  },
+  {
     content: '角色装备使用率统计🧰',
     avatar:
       'https://img-static.mihoyo.com/communityweb/upload/a76fa2eefd16e5e133232afdcc16f606.png',

@@ -40,7 +40,7 @@
         <li
           v-for="(item, index) in data"
           :key="index * 1.1"
-          class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8"
+          class="px-3 pt-4 pb-4 md:px-4 sm:pt-5 md:pb-8"
         >
           <figure
             class="flex-none shadow-lg rounded-xl w-80 md:w-100 hover:scale-105 transition-all"

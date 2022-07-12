@@ -296,7 +296,7 @@
         <h1
           class="relative mt-12 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
-          <span class="border-b-2 border-b-amber-300">角色命座数据</span>
+          <span class="border-b-2 border-b-gray-400">角色命座数据</span>
         </h1>
         <h5 class="text-sm">持有率以及各命座占比</h5>
       </div>

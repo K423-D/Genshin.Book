@@ -19,7 +19,7 @@
         <h1
           class="relative mt-12 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
-          <span class="border-b-2 border-b-violet-500">队伍使用数据（按间）</span>
+          <span class="border-b-2 border-b-yellow-300">队伍使用数据（按间）</span>
         </h1>
         <h5 class="text-sm">深渊各间最常用的一些队伍搭配</h5>
       </div>
@@ -112,8 +112,8 @@
     margin: 24;
   }
   :deep(.el-radio-button__original-radio:checked + .el-radio-button__inner) {
-    background-color: rgb(139 92 246) !important;
-    border-color: rgb(139 92 246) !important;
-    box-shadow: -1px 0 0 0 rgb(139 92 246) !important ;
+    background-color: #fddf47c5 !important;
+    border-color: #fddf47c5 !important;
+    box-shadow: -1px 0 0 0 #fddf47c5 !important ;
   }
 </style>

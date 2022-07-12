@@ -13,8 +13,8 @@ const getTeamCombination = async () => {
 const getTeamRecommanded = async (data: IUploadData) => {
   return post({ url: URL.teamRecommanded, data });
 };
-const getAvatarParticipation = async (data: IUploadData) => {
-  return post({ url: URL.avatarParticipation, data });
+const getAvatarParticipation = async () => {
+  return get({ url: URL.avatarParticipation });
 };
 
 export { getTeamCombination, getTeamRecommanded, getAvatarParticipation };
