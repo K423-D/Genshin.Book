@@ -3,7 +3,7 @@
   import Header from '/@/components/Header/index.vue';
   import useGenshinItem from '/@/hooks/useGenshinItem';
 
-  document.title = `角色搭配 | Genshin.Book`;
+  document.title = `队伍出场数据 | Genshin.Book`;
   const currentFloor = ref(12);
   const currentIndex = ref(3);
   const genshinItem = useGenshinItem();

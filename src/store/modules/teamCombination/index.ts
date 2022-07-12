@@ -29,7 +29,6 @@ export const useTeamCombinationStore = defineStore('teamCombination', {
           team.id = { upHalf, downHalf };
         });
       });
-      console.log(res);
       this.setTeamCombination(res);
     },
   },
