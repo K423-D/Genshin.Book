@@ -1,29 +1,13 @@
 <script setup lang="ts">
   import useTeamCombination from '../../hooks/useTeamCombination';
   import Header from '/@/components/Header/index.vue';
-  import ItemBox from '/@/components/ItemBox/index.vue';
   import useGenshinItem from '/@/hooks/useGenshinItem';
-  import useTeamCollocation from '/@/hooks/useTeamCollocation';
-  import { Item } from '/@/store/modules/genshinItem/types';
-  // import { CollocationEntity } from '/@/store/modules/teamCollocation/types';
 
   document.title = `角色搭配 | Genshin.Book`;
-
+  const currentFloor = ref(12);
+  const currentIndex = ref(3);
   const genshinItem = useGenshinItem();
-  const teamCollocation = useTeamCollocation();
   const teamCombination = useTeamCombination();
-  const currentAvatar = ref<number>(0);
-  const currentCollocation = computed(() => {
-    if (currentAvatar.value === 0) {
-      return teamCollocation.data;
-    } else {
-      const res = teamCollocation.data.find((item) => item.avatar === currentAvatar.value);
-      return [res];
-    }
-  });
-  const changeAvatar = (avatar: Item | undefined) => {
-    currentAvatar.value = avatar == undefined ? 0 : avatar.id;
-  };
 
   onMounted(() => {});
 </script>
@@ -36,16 +20,31 @@
         <h1
           class="relative mt-12 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-20 lg:mt-20 xl:mt-20 2xl:mt-20"
         >
-          <span class="border-b-2 border-b-amber-300">角色搭配数据</span>
+          <span class="border-b-2 border-b-violet-500">队伍搭配数据</span>
         </h1>
-        <h5 class="text-sm">展示至多八位和角色搭配最多的队友</h5>
+        <h5 class="text-sm">深渊各层最常用的一些队伍搭配</h5>
       </div>
     </main>
+    <div class="flex justify-center items-center my-5">
+      <el-radio-group v-model="currentFloor">
+        <el-radio-button :label="12">第12层</el-radio-button>
+        <el-radio-button :label="11">第11层</el-radio-button>
+        <el-radio-button :label="10">第10层</el-radio-button>
+        <el-radio-button :label="9">第9层</el-radio-button>
+      </el-radio-group>
+    </div>
+    <div class="flex justify-center items-center my-5">
+      <el-radio-group v-model="currentIndex" size="small">
+        <el-radio-button :label="1">第1间</el-radio-button>
+        <el-radio-button :label="2">第2间</el-radio-button>
+        <el-radio-button :label="3">第3间</el-radio-button>
+      </el-radio-group>
+    </div>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
       <ul
-        class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 sm:px-20 md:px-40 lg:px-40 xl:px-20"
+        class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6 px-5 sm:px-10 md:px-10 lg:px-10 xl:px-10"
       >
-        <li class="w-full mt-6 md:mt-0 lg:mt-0 flex flex-col">
+        <!-- <li class="w-full mt-6 md:mt-0 lg:mt-0 flex flex-col">
           <AvatarSelect
             :avatar="genshinItem.avatarMap[currentAvatar] || {}"
             :avatars="genshinItem.avatars"
@@ -54,39 +53,61 @@
           <div class="flex justify-center items-center mt-2 text-sm">
             <span>点击头像选择角色</span>
           </div>
-        </li>
+        </li> -->
         <li
-          v-for="(item, index) in currentCollocation"
+          v-for="(item, index) in teamCombination.data"
           :key="index * 1.1"
-          class="px-3 pt-4 md:px-10 sm:pt-5 md:pb-8"
+          class="px-3 md:px-10 md:w-full"
         >
-          <el-card>
-            <div class="flex justify-between items-center">
+          <div v-if="item.level.floor === currentFloor && item.level.index === currentIndex">
+            <div class="text-center text-lg font-bold">
+              {{ `第${item.level.floor}层 - 第${item.level.index}间` }}
+            </div>
+            <div class="flex flex-wrap justify-center items-center">
               <div
-                class="pr-5 px-2 md:pr-8 md:pl-0 lg:ml-4 mr-4 border-r border-gray-800 dark:border-gray-200 border-opacity-25 dark:border-opacity-25"
+                v-for="(team, j) in item.teams"
+                :key="j"
+                class="flex justify-between items-center px-2"
               >
-                <ItemBox
-                  :name="genshinItem.avatarMap[item?.avatar || currentAvatar].name"
-                  :url="genshinItem.avatarMap[item?.avatar || currentAvatar].url"
-                  :star="genshinItem.avatarMap[item?.avatar || currentAvatar].star"
-                />
-              </div>
-              <div class="flex flex-wrap justify-center items-center md:mx-2">
-                <div
-                  v-for="(collocation, index) in item?.collocations"
-                  :key="index"
-                  class="mr-1.5 py-2 md:mx-2 lg:mx-2"
-                >
-                  <ItemBox
-                    @click="currentAvatar = collocation.id"
-                    :name="`${collocation.value}%`"
-                    :url="genshinItem.avatarMap[collocation.id].url"
-                    :star="genshinItem.avatarMap[collocation.id].star"
-                  />
-                </div>
+                <el-card class="my-4 flex flex-wrap justify-center items-center">
+                  <div class="flex flex-wrap justify-center items-center">
+                    <div
+                      class="flex flex-col justify-between items-center md:border-r md:dark:border-gray-600"
+                    >
+                      <div class="flex justify-between items-center">
+                        <ItemBox
+                          class="mx-1 md:mx-2"
+                          v-for="(id, k) in team.id.upHalf"
+                          :key="k"
+                          :name="genshinItem.avatarMap[id].name"
+                          :url="genshinItem.avatarMap[id].url"
+                          :star="genshinItem.avatarMap[id].star"
+                        />
+                      </div>
+                      <span class="text-sm my-2">上半</span>
+                    </div>
+                    <div class="flex flex-col justify-between items-center">
+                      <div class="flex justify-between items-center">
+                        <ItemBox
+                          v-for="(id, k) in team.id.downHalf"
+                          class="mx-1 md:mx-2"
+                          :key="k"
+                          :name="genshinItem.avatarMap[id].name"
+                          :url="genshinItem.avatarMap[id].url"
+                          :star="genshinItem.avatarMap[id].star"
+                        />
+                      </div>
+                      <span class="text-sm my-2">下半</span>
+                    </div>
+                  </div>
+                  <el-divider class="my-0" />
+                  <div class="text-sm text-center mt-2 font-bold">{{
+                    `使用人数：${team.value}`
+                  }}</div>
+                </el-card>
               </div>
             </div>
-          </el-card>
+          </div>
         </li>
       </ul>
     </article>
@@ -94,4 +115,16 @@
     <Footer />
   </div>
 </template>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+  .el-divider--horizontal {
+    margin: 0;
+  }
+  .el-divider--horizontal .my-24 {
+    margin: 24;
+  }
+  :deep(.el-radio-button__original-radio:checked + .el-radio-button__inner) {
+    background-color: rgb(139 92 246) !important;
+    border-color: rgb(139 92 246) !important;
+    box-shadow: -1px 0 0 0 rgb(139 92 246) !important ;
+  }
+</style>

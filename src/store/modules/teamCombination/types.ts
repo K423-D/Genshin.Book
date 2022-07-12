@@ -5,8 +5,8 @@ export interface TeamCombinationEntity {
   };
   teams: {
     id: {
-      upHalf: string[];
-      downHalf: string[];
+      upHalf: number[];
+      downHalf: number[];
     };
     value: number;
   }[];
