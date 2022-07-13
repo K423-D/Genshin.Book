@@ -34,10 +34,12 @@
     let obj: any = {};
     yData.map((item) => {
       // const r = genshinItem.avatars.find((o) => o.name == item);
+      console.log(avatarMap[`${item}`]);
+
       obj[`${item}`] = {
         backgroundColor: {
           // image: r!.url,
-          image: avatarMap[item].url,
+          image: avatarMap[`${item}`]?.url,
         },
         align: 'center',
         height: 40,
@@ -228,7 +230,6 @@
     ThemeType.Light,
   );
   const refreshData = () => {
-    // barData.value = [820, 932, 901, 934, 1290, 1330, 1320];
     const _rich = yAxisRich(yData);
     option.yAxis.axisLabel.rich = _rich;
     setOption(option as any);
@@ -283,7 +284,7 @@
   onMounted(() => {
     nextTick(() => {
       showLoading();
-      refreshData();
+      // refreshData();
     });
   });
 </script>

@@ -8,8 +8,10 @@
   // import { useGenshinItemStore } from '../store/modules/genshinItem';
   import Footer from '../components/footer/index.vue';
   import { getToken } from '../utils/auth';
+  import userOverview from '../hooks/userOverview';
   // import useGenshinItem from '../hooks/useGenshinItem';
   const appStore = useAppStore();
+  const overview = userOverview();
   const data = ref(framework);
   const token = getToken();
   if (!token) {
@@ -35,8 +37,27 @@
         <p class="text-2xl text-slate-800 dark:text-slate-400">你好，旅行者~</p>
       </div>
     </main>
+    <ul
+      class="flex flex-wrap items-center justify-center py-4 text-sm md:hidden lg:hidden xl:hidden"
+    >
+      <li class="px-3 md:px-4 md:pb-8">
+        <div>
+          <span>全部用户数量：</span><span>{{ overview?.totalPlayerCount }}</span>
+        </div>
+      </li>
+      <li class="px-3 md:px-4 md:pb-8">
+        <div>
+          <span>当期提交深渊数据用户数量：</span><span>{{ overview?.collectedPlayerCount }}</span>
+        </div>
+      </li>
+      <li class="px-3 md:px-4 md:pb-8">
+        <div>
+          <span>当期满星用户数量：</span><span>{{ overview?.fullStarPlayerCount }}</span>
+        </div>
+      </li>
+    </ul>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-      <ul class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-36 xl:px-20">
+      <ul class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-10 xl:px-10">
         <li
           v-for="(item, index) in data"
           :key="index * 1.1"

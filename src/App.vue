@@ -8,6 +8,9 @@
   //   nextTick(() => (isRouterAlive.value = true))
   // }
 
+  // 默认黑暗模式
+  localStorage.setItem('vueuse-color-scheme', 'dark');
+
   // const isRouterAlive = ref(true)
 
   // watch(

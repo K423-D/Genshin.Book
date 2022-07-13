@@ -4,6 +4,7 @@ import { AppState } from './types';
 import { getAccessToken } from '/@/api/app';
 import { setToken } from '/@/utils/auth';
 import { ElMessage } from 'element-plus';
+import { useOverviewStore } from '../overview';
 
 export const useAppStore = defineStore(
   // 唯一ID
@@ -50,7 +51,8 @@ export const useAppStore = defineStore(
         if (res.data.accessToken) {
           setToken(res.data.accessToken);
           ElMessage.success('数据更新成功');
-          window.location.reload();
+          useOverviewStore().fetchOverview();
+          // window.location.reload();
           // setTimeout(() => {
           // }, 1500);
         } else {

@@ -72,11 +72,11 @@
               <div class="flex flex-col justify-start items-start text-sm font-bold">
                 <div>{{ `最强一击：${rank.damage.value}` }}</div>
                 <div class="my-2">{{
-                  `超过了 ${rank.damage.percent}% 的${
+                  `超过 ${rank.damage.percent}% 的${
                     genshinItem.avatarMap[rank.damage.avatarId].name
                   }`
                 }}</div>
-                <div>{{ `超过了 ${rank.damage.percentTotal}% 的总记录` }}</div>
+                <div>{{ `超过 ${rank.damage.percentTotal}% 的总记录` }}</div>
               </div>
             </div>
           </div>
