@@ -3,13 +3,13 @@
   import ItemBox from '/@/components/ItemBox/index.vue';
   import useGenshinItem from '/@/hooks/useGenshinItem';
   import { useAppStore } from '/@/store';
-  import userOverview from '/@/hooks/userOverview';
+  import useOverview from '/@/hooks/useOverview';
   import useAvatarParticipation from '/@/hooks/useAvatarParticipation';
 
   const currentFloor = ref(0);
 
   const appStore = useAppStore();
-  const overview = userOverview();
+  const overview = useOverview();
   const genshinItem = useGenshinItem();
   const avatarParticipation = useAvatarParticipation();
 

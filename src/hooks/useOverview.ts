@@ -1,7 +1,7 @@
 import { useOverviewStore } from '../store/modules/overview';
 import { getToken } from '../utils/auth';
 
-export default function userOverview() {
+export default function useOverview() {
   const overview = useOverviewStore();
   const token = getToken();
   if (

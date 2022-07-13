@@ -4,7 +4,7 @@
   import { useDark, useToggle } from '@vueuse/core';
   import { useAppStore } from '/@/store';
   import { Sunny, Moon, Refresh, InfoFilled } from '@element-plus/icons-vue';
-  import userOverview from '/@/hooks/userOverview';
+  import useOverview from '/@/hooks/useOverview';
   import { ElMessage } from 'element-plus';
 
   // const title = ref('I want to study typescript')
@@ -27,7 +27,7 @@
     }, 1000);
   };
   const appStore = useAppStore();
-  const overview = userOverview();
+  const overview = useOverview();
   // const useStore = useUserStore()
   const theme = computed(() => {
     return appStore.theme;

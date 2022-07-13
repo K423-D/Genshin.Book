@@ -8,10 +8,10 @@
   // import { useGenshinItemStore } from '../store/modules/genshinItem';
   import Footer from '../components/footer/index.vue';
   import { getToken } from '../utils/auth';
-  import userOverview from '../hooks/userOverview';
+  import { useOverviewStore } from '../store/modules/overview';
   // import useGenshinItem from '../hooks/useGenshinItem';
   const appStore = useAppStore();
-  const overview = userOverview();
+  const overview = useOverviewStore();
   const data = ref(framework);
   const token = getToken();
   if (!token) {
