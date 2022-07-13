@@ -79,4 +79,14 @@ export const framework = [
     author: '按每一间统计',
     icon: 'svg-arrow-circle-right',
   },
+  {
+    content: '深渊个人数据排行🏅',
+    avatar:
+      'https://img-static.mihoyo.com/communityweb/upload/51f9a0f130784f27ec8fef3e2b534156.png',
+    title: '【 最 强 一 击 】',
+    path: '/rank',
+    color: 'from-lime-100 to-lime-700',
+    author: '【 承 受 伤 害 】',
+    icon: 'svg-arrow-circle-right',
+  },
 ];

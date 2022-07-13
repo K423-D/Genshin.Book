@@ -62,6 +62,11 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
           changeOrigin: true,
           // rewrite: (path) => path.replace(/^\/api/, ''),
         },
+        '/Record': {
+          target: 'https://hutao-api.snapgenshin.com/',
+          changeOrigin: true,
+          // rewrite: (path) => path.replace(/^\/api/, ''),
+        },
         // '/auth': {
         //   target: 'https://auth.snapgenshin.com/',
         //   changeOrigin: true,
