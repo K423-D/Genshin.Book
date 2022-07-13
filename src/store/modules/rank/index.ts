@@ -1,3 +1,4 @@
+import { ElMessage } from 'element-plus';
 import { defineStore } from 'pinia';
 import { Rank } from './types';
 import { getRank } from '/@/api/record';
@@ -26,14 +27,19 @@ export const useRankStore = defineStore('rank', {
     async fetchRank(uid: string | number) {
       const now = new Date().getTime();
       localStorage.setItem('rank-cd', `${now}`);
-      let res: Rank = await getRank(uid);
+      let res = await getRank(uid);
 
-      res.damage.percent = keepTwoDecimalFull(res.damage.percent);
-      res.damage.percentTotal = keepTwoDecimalFull(res.damage.percentTotal);
-      res.takeDamage.percent = keepTwoDecimalFull(res.takeDamage.percent);
-      res.takeDamage.percentTotal = keepTwoDecimalFull(res.takeDamage.percentTotal);
-
-      this.setRank(res);
+      if (res.damage && res.takeDamage) {
+        res.damage.percent = keepTwoDecimalFull(res.damage.percent * 100);
+        res.damage.percentTotal = keepTwoDecimalFull(res.damage.percentTotal * 100);
+        res.takeDamage.percent = keepTwoDecimalFull((1 - res.takeDamage.percent) * 100);
+        res.takeDamage.percentTotal = keepTwoDecimalFull((1 - res.takeDamage.percentTotal) * 100);
+        this.setRank(res);
+      } else {
+        setTimeout(() => {
+          ElMessage.info('该uid没有上传深渊数据哦~');
+        }, 1000);
+      }
     },
   },
 });

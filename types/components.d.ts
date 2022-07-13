@@ -8,6 +8,7 @@ declare module '@vue/runtime-core' {
     AvatarSelect: typeof import('./../src/components/AvatarSelect/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
+    ElEmpty: typeof import('element-plus/es')['ElEmpty']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Footer: typeof import('./../src/components/footer/index.vue')['default']
