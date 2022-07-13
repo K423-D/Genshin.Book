@@ -35,21 +35,21 @@ export const useRankStore = defineStore('rank', {
         res.takeDamage.percent = keepTwoDecimalFull((1 - res.takeDamage.percent) * 100);
         res.takeDamage.percentTotal = keepTwoDecimalFull((1 - res.takeDamage.percentTotal) * 100);
       } else {
+        res = {
+          damage: {
+            avatarId: 0,
+            value: 0,
+            percent: 0,
+            percentTotal: 0,
+          },
+          takeDamage: {
+            avatarId: 0,
+            value: 0,
+            percent: 0,
+            percentTotal: 0,
+          },
+        };
         setTimeout(() => {
-          res = {
-            damage: {
-              avatarId: 0,
-              value: 0,
-              percent: 0,
-              percentTotal: 0,
-            },
-            takeDamage: {
-              avatarId: 0,
-              value: 0,
-              percent: 0,
-              percentTotal: 0,
-            },
-          };
           ElMessage.info('该uid没有上传深渊数据哦~');
         }, 1000);
       }
