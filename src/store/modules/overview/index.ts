@@ -16,21 +16,21 @@ export const useOverviewStore = defineStore('overview', {
     },
     async fetchOverview() {
       let res;
-
-      const o = localStorage.getItem('Overview');
+      localStorage.removeItem('Overview');
+      const o = sessionStorage.getItem('Overview');
       const now = new Date().getTime();
 
       // 判断是否过期
       if (o && JSON.parse(o).time + 10 * 60 * 1000 >= now) {
         res = JSON.parse(o).overview;
       } else {
-        localStorage.removeItem('Overview');
+        sessionStorage.removeItem('Overview');
         res = await getOverview();
         const _overview = {
           overview: res,
           time: now,
         };
-        localStorage.setItem('Overview', JSON.stringify(_overview));
+        sessionStorage.setItem('Overview', JSON.stringify(_overview));
       }
       this.setOverview(res);
     },

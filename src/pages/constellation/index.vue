@@ -34,8 +34,6 @@
     let obj: any = {};
     yData.map((item) => {
       // const r = genshinItem.avatars.find((o) => o.name == item);
-      console.log(avatarMap[`${item}`]);
-
       obj[`${item}`] = {
         backgroundColor: {
           // image: r!.url,
