@@ -1,0 +1,3 @@
+[submodule "src/assets/Snap.Metadata"]
+	path = src/assets/Snap.Metadata
+	url = https://github.com/DGP-Studio/Snap.Metadata.git
