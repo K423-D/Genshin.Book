@@ -27,6 +27,9 @@
   let sixArr: number[] = [];
 
   const formatter = (params) => {
+    if (params.data < 0.04) {
+      return '';
+    }
     const str = `${keepTwoDecimalFull((params.data as number) * 100)}%`;
     return str;
   };
@@ -73,18 +76,19 @@
       selectedMode: 'multiple',
       selected: {
         持有率: true,
-        '0命': true,
-        '1命': true,
-        '2命': true,
-        '3命': true,
-        '4命': true,
-        '5命': true,
-        '6命': true,
+        '0命': false,
+        '1命': false,
+        '2命': false,
+        '3命': false,
+        '4命': false,
+        '5命': false,
+        '6命': false,
       },
+      textStyle: { color: '#6E7079' },
     },
     grid: {
-      left: '0%',
-      right: '0%',
+      left: '2%',
+      right: '2%',
       bottom: '2%',
       containLabel: true,
     },
@@ -92,7 +96,7 @@
       type: 'value',
       splitNumber: isMobile ? 10 : 50,
       splitLine: {
-        show: true,
+        show: false,
       },
       axisLabel: {
         formatter: (params: number) => {
@@ -104,7 +108,7 @@
       type: 'category',
       data: yData,
       splitLine: {
-        show: true,
+        show: false,
       },
       axisLabel: {
         formatter: (value) => {
@@ -282,7 +286,9 @@
   onMounted(() => {
     nextTick(() => {
       showLoading();
-      // refreshData();
+      if (constellation.data.length > 0) {
+        refreshData();
+      }
     });
   });
 </script>
@@ -300,9 +306,10 @@
         <h5 class="text-sm">持有率以及各命座占比</h5>
       </div>
     </main>
+    <div class="text-xs text-center"> 点击查看更多命座数据 👇</div>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-      <ul class="flex flex-wrap items-center justify-center py-0 md:py-6 lg:py-6 xl:py-6 2xl:py-6">
-        <el-card class="my-3 mx-2 md:mx-4 lg:mx-4 w-full h-chartHeight">
+      <ul class="flex flex-wrap items-center justify-center py-0 md:pb-6 lg:pb-6 xl:pb-6 2xl:pb-6">
+        <el-card class="mb-3 mx-2 md:mx-4 lg:mx-4 w-full h-chartHeight">
           <div ref="chartEl" class="chart h-chartHeight"></div>
           <!-- <li class="px-3 pt-4 md:px-10 sm:pt-5 md:pb-8">
            

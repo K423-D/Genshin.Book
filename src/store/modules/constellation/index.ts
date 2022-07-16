@@ -14,7 +14,7 @@ export const useConstellationStore = defineStore('constellation', {
     },
     async fetchConstellation() {
       const res = await getConstellation();
-      res.sort((a, b) => a.avatar - b.avatar);
+      res.sort((a, b) => b.avatar - a.avatar);
       const d: Constellation[] = res.map((item) => {
         item.rate.sort((a, b) => a.id - b.id);
         const rate = item.rate.map((el) => {
