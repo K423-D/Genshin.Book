@@ -7,12 +7,36 @@
   import useConstellation from '/@/hooks/useConstellation';
   import useGenshinItem from '/@/hooks/useGenshinItem';
   import { keepTwoDecimalFull } from '/@/utils/keepTwoDecimalFull';
+  import { Sort, SortBy, Star } from '/@/store/modules/constellation/types';
 
   document.title = `角色命座 | Genshin.Book`;
 
   const genshinItem = useGenshinItem();
-  let avatarMap = genshinItem.avatarMap;
   const constellation = useConstellation();
+  const star = ref<Star>(constellation.star);
+  const sort = ref<Sort>(constellation.sort);
+  const sortBy = ref<SortBy>(constellation.sortBy);
+  const starList = [
+    { label: '全部', value: Star.all },
+    { label: '五星', value: Star.five },
+    { label: '四星', value: Star.four },
+  ];
+  const sortList = [
+    { label: '升序', value: Sort.asc },
+    { label: '降序', value: Sort.desc },
+  ];
+  const sortByList = [
+    { label: '角色id', value: SortBy.id },
+    { label: '持有率', value: SortBy.持有率 },
+    { label: '0命', value: SortBy['0命'] },
+    { label: '1命', value: SortBy['1命'] },
+    { label: '2命', value: SortBy['2命'] },
+    { label: '3命', value: SortBy['3命'] },
+    { label: '4命', value: SortBy['4命'] },
+    { label: '5命', value: SortBy['5命'] },
+    { label: '6命', value: SortBy['6命'] },
+  ];
+  let avatarMap = genshinItem.avatarMap;
   let isMobile = document.body.clientWidth < 600;
 
   // 图表数据
@@ -75,7 +99,7 @@
       data: ['持有率', '0命', '1命', '2命', '3命', '4命', '5命', '6命'],
       selectedMode: 'multiple',
       selected: {
-        持有率: true,
+        持有率: false,
         '0命': false,
         '1命': false,
         '2命': false,
@@ -94,7 +118,7 @@
     },
     xAxis: {
       type: 'value',
-      splitNumber: isMobile ? 10 : 50,
+      // splitNumber: isMobile ? 10 : 50,
       splitLine: {
         show: false,
       },
@@ -106,7 +130,7 @@
     },
     yAxis: {
       type: 'category',
-      data: yData,
+      data: [],
       splitLine: {
         show: false,
       },
@@ -233,8 +257,48 @@
   );
   const refreshData = () => {
     const _rich = yAxisRich(yData);
+    option.yAxis.data = yData as any;
     option.yAxis.axisLabel.rich = _rich;
+    option.legend.selected = {
+      持有率: false,
+      '0命': false,
+      '1命': false,
+      '2命': false,
+      '3命': false,
+      '4命': false,
+      '5命': false,
+      '6命': false,
+    };
+    switch (sortBy.value) {
+      case SortBy.持有率:
+      default:
+        option.legend.selected[`持有率`] = true;
+        break;
+      case SortBy['0命']:
+      case SortBy['1命']:
+      case SortBy['2命']:
+      case SortBy['3命']:
+      case SortBy['4命']:
+      case SortBy['5命']:
+      case SortBy['6命']:
+        option.legend.selected[`${sortBy.value}命`] = true;
+        break;
+    }
     setOption(option as any);
+  };
+
+  const starChange = (val) => {
+    yData = [];
+    constellation.filterStar(val);
+  };
+  const sortChange = (val) => {
+    yData = [];
+
+    constellation.toggleSort(val);
+  };
+  const sortByChange = (val) => {
+    yData = [];
+    constellation.sortData(val, undefined);
   };
 
   watchEffect(() => {
@@ -306,6 +370,67 @@
         <h5 class="text-sm">持有率以及各命座占比</h5>
       </div>
     </main>
+    <div class="flex flex-wrap justify-center item-center my-8 md:mt-0 lg:mt-0">
+      <div class="flex justify-center items-center py-2">
+        <span>显示</span>
+        <span class="w-20 px-2 flex items-center">
+          <el-select
+            size="small"
+            @change="starChange"
+            v-model="star"
+            filterable
+            placeholder="Select"
+          >
+            <el-option
+              v-for="(item, index) in starList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </span>
+        <span>角色，</span>
+      </div>
+      <div class="flex justify-center items-center py-2">
+        <span>按</span>
+        <span class="w-24 px-2 flex items-center">
+          <el-select
+            size="small"
+            v-model="sortBy"
+            filterable
+            placeholder="Select"
+            @change="sortByChange"
+          >
+            <el-option
+              v-for="(item, index) in sortByList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </span>
+        <span>进行</span>
+      </div>
+      <div class="flex justify-center items-center py-2">
+        <span class="w-20 px-2 flex items-center">
+          <el-select
+            size="small"
+            @change="sortChange"
+            v-model="sort"
+            filterable
+            placeholder="Select"
+          >
+            <el-option
+              v-for="(item, index) in sortList"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </span>
+        <span>排列</span>
+      </div>
+    </div>
     <div class="text-xs text-center"> 点击查看更多命座数据 👇</div>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
       <ul class="flex flex-wrap items-center justify-center py-0 md:pb-6 lg:pb-6 xl:pb-6 2xl:pb-6">
