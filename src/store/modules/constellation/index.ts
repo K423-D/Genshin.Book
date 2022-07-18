@@ -4,14 +4,14 @@ import { useGenshinItemStore } from '../genshinItem';
 import { Constellation, Sort, SortBy, Star } from './types';
 import { getConstellation } from '/@/api/statistics';
 import piniaStore from '/@/store/index';
-import { keepTwoDecimalFull } from '/@/utils/keepTwoDecimalFull';
+// import { keepTwoDecimalFull } from '/@/utils/keepTwoDecimalFull';
 export const useConstellationStore = defineStore('constellation', {
   state: () => ({
     data: [] as Constellation[],
     origin: [] as Constellation[],
     star: Star.all,
-    sort: Sort.asc,
-    sortBy: SortBy.id,
+    sort: Sort.desc,
+    sortBy: SortBy.持有率,
   }),
   getters: {},
   actions: {
@@ -32,7 +32,7 @@ export const useConstellationStore = defineStore('constellation', {
     },
     async fetchConstellation() {
       const res = await getConstellation();
-      res.sort((a, b) => a.avatar - b.avatar);
+      // res.sort((a, b) => a.avatar - b.avatar);
       const d: Constellation[] = res.map((item) => {
         item.rate.sort((a, b) => a.id - b.id);
         const rate = item.rate.map((el) => {
@@ -44,11 +44,12 @@ export const useConstellationStore = defineStore('constellation', {
         });
         return {
           avatar: item.avatar,
-          holdingRate: keepTwoDecimalFull(item.holdingRate),
+          holdingRate: item.holdingRate,
           rate,
         };
       });
       this.setOrigin(d);
+      d.sort((a, b) => b.holdingRate - a.holdingRate);
       this.setConstellation(d);
     },
     // 星级过滤
@@ -98,8 +99,6 @@ export const useConstellationStore = defineStore('constellation', {
         case SortBy['6命']: // 按6命排序
           if (this.sort === Sort.asc) {
             arr.sort((a, b) => {
-              console.log(a, b);
-
               return a.rate[this.sortBy].value - b.rate[this.sortBy].value;
             });
           } else {
@@ -107,8 +106,6 @@ export const useConstellationStore = defineStore('constellation', {
           }
           break;
       }
-      console.log(arr);
-
       this.setConstellation(arr);
     },
     //切换升降序

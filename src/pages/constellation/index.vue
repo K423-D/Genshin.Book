@@ -118,13 +118,13 @@
     },
     xAxis: {
       type: 'value',
-      // splitNumber: isMobile ? 10 : 50,
+      splitNumber: 10,
       splitLine: {
         show: false,
       },
       axisLabel: {
         formatter: (params: number) => {
-          return `${Math.ceil(params * 100)}%`;
+          return `${Math.round(params * 100)}%`;
         },
       },
     },
@@ -256,9 +256,11 @@
     ThemeType.Light,
   );
   const refreshData = () => {
+    let splitNum = 50;
     const _rich = yAxisRich(yData);
     option.yAxis.data = yData as any;
     option.yAxis.axisLabel.rich = _rich;
+    // 处理对应项的显示
     option.legend.selected = {
       持有率: false,
       '0命': false,
@@ -270,6 +272,18 @@
       '6命': false,
     };
     switch (sortBy.value) {
+      case SortBy.id:
+        option.legend.selected = {
+          持有率: true,
+          '0命': true,
+          '1命': true,
+          '2命': true,
+          '3命': true,
+          '4命': true,
+          '5命': true,
+          '6命': true,
+        };
+        break;
       case SortBy.持有率:
       default:
         option.legend.selected[`持有率`] = true;
@@ -284,6 +298,78 @@
         option.legend.selected[`${sortBy.value}命`] = true;
         break;
     }
+
+    enum Selected {
+      none = -1,
+      holdingRate = 0,
+      holdingRateAndRate = 1,
+      singleRate = 2,
+      multipleRate = 3,
+    }
+    let maxRate = 0;
+    let maxHoldingRate = 0;
+    let _max = 0; // 最终的最大值
+    let arr: string[] = [];
+    let s = Selected.none;
+
+    // 遍历数据，找出最大值
+    for (const key of Object.keys(option.legend.selected)) {
+      if (option.legend.selected[key]) {
+        arr.push(key);
+      }
+    }
+    if (arr.includes('持有率') && arr.length > 1) {
+      s = Selected.holdingRateAndRate;
+    } else if (!arr.includes('持有率') && arr.length > 1) {
+      s = Selected.multipleRate;
+    } else if (!arr.includes('持有率') && arr.length == 1) {
+      s = Selected.singleRate;
+    } else if (arr.includes('持有率') && arr.length == 1) {
+      s = Selected.holdingRate;
+    }
+    constellation.data.map((item) => {
+      switch (s) {
+        case Selected.holdingRateAndRate: // 既有持有率又有命座
+          let tempSum: number = 0;
+          maxHoldingRate =
+            item.holdingRate - maxHoldingRate >= 0 ? item.holdingRate : maxHoldingRate;
+          arr
+            .filter((el) => el !== '持有率')
+            .map((c) => {
+              tempSum += item.rate[c.substring(0, 1)].value;
+            });
+          maxRate = tempSum - maxRate >= 0 ? tempSum : maxRate;
+          break;
+        case Selected.holdingRate: // 只有持有率
+          maxHoldingRate =
+            item.holdingRate - maxHoldingRate >= 0 ? item.holdingRate : maxHoldingRate;
+          break;
+        case Selected.singleRate: // 只有单个命座
+          console.log(item.rate[parseInt(arr[0].substring(0, 1))].id);
+          maxRate =
+            item.rate[parseInt(arr[0].substring(0, 1))].value - maxRate >= 0
+              ? item.rate[parseInt(arr[0].substring(0, 1))].value
+              : maxRate;
+          break;
+        case Selected.multipleRate: // 多个命座
+          let tempSum2: number = 0;
+          arr.map((c) => {
+            tempSum2 += item.rate[c.substring(0, 1)].value;
+          });
+          maxRate = tempSum2 - maxRate >= 0 ? tempSum2 : maxRate;
+          break;
+      }
+    });
+    _max = maxHoldingRate - maxRate >= 0 ? maxHoldingRate : maxRate;
+    // console.log(arr, s);
+
+    // 根据最大值划分x轴份数
+    splitNum =
+      Math.ceil(Math.ceil(_max * 100) / 2) > 25
+        ? Math.ceil(Math.ceil(_max * 100) / 2)
+        : Math.ceil(_max * 100);
+    option.xAxis.splitNumber = isMobile ? 10 : splitNum;
+
     setOption(option as any);
   };
 

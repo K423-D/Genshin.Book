@@ -57,46 +57,54 @@
       </li>
     </ul>
     <article class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44">
-      <ul class="flex flex-wrap items-center justify-center py-6 sm:px-20 lg:px-10 xl:px-10">
+      <ul
+        class="flex flex-wrap items-center justify-center py-6 sm:px-20 md:px-20 lg:px-10 xl:px-10"
+      >
         <li
           v-for="(item, index) in data"
           :key="index * 1.1"
-          class="px-3 pt-4 pb-4 md:px-4 sm:pt-5 md:pb-8"
+          class="px-4 pt-4 mx-2 pb-4 md:px-5 sm:pt-5 md:pb-8"
         >
-          <figure
-            class="flex-none shadow-lg rounded-xl w-80 md:w-100 hover:scale-105 transition-all"
+          <router-link
+            :to="item.path"
+            class="transition-opacity duration-200 opacity-90 hover:opacity-100"
           >
-            <blockquote
-              class="px-6 py-8 text-lg font-semibold leading-8 bg-gray-100 rounded-t-xl md:p-5 md:text-base md:leading-8 text-slate-700 dark:text-slate-300 dark:bg-slate-800 dark:highlight-white/5"
+            <figure
+              class="flex-none shadow-lg rounded-xl w-80 md:w-100 hover:scale-105 transition-all"
             >
-              <SvgIcon name="svg-marks" :color="'#374151'" />
-              <p v-html="item.content"></p>
-            </blockquote>
-            <figcaption
-              class="flex items-center px-4 py-6 space-x-4 leading-6 text-white bg-gradient-to-br rounded-b-xl"
-              :class="item.color"
-            >
-              <div
-                class="flex items-center justify-center flex-none bg-white rounded-full w-14 h-14"
+              <blockquote
+                class="px-6 py-8 text-lg font-semibold leading-8 bg-gray-100 rounded-t-xl md:p-5 md:text-base md:leading-8 text-slate-700 dark:text-slate-300 dark:bg-slate-800 dark:highlight-white/5"
               >
-                <img :src="item.avatar" class="w-12 h-12 rounded-full" loading="lazy" />
-              </div>
-              <div class="flex-auto">
-                <div class="text-base font-semibold dark:text-slate-200">
-                  <p> {{ item.title }}</p>
-                  <p class="text-sm">{{ item.author }}</p>
+                <SvgIcon name="svg-marks" :color="'#374151'" />
+                <p v-html="item.content"></p>
+              </blockquote>
+              <figcaption
+                class="flex items-center px-4 py-6 space-x-4 leading-6 text-white bg-gradient-to-br rounded-b-xl"
+                :class="item.color"
+              >
+                <div
+                  class="flex items-center justify-center flex-none bg-white rounded-full w-14 h-14"
+                >
+                  <img :src="item.avatar" class="w-12 h-12 rounded-full" loading="lazy" />
                 </div>
-              </div>
-              <cite class="flex">
-                <router-link
+                <div class="flex-auto">
+                  <div class="text-base font-semibold dark:text-slate-200">
+                    <p> {{ item.title }}</p>
+                    <p class="text-sm">{{ item.author }}</p>
+                  </div>
+                </div>
+                <cite class="flex">
+                  <!-- <router-link
                   :to="item.path"
                   class="transition-opacity duration-200 opacity-50 hover:opacity-75"
                 >
                   <SvgIcon :name="item.icon" />
-                </router-link>
-              </cite>
-            </figcaption>
-          </figure>
+                </router-link> -->
+                  <SvgIcon :name="item.icon" />
+                </cite>
+              </figcaption>
+            </figure>
+          </router-link>
         </li>
       </ul>
     </article>
