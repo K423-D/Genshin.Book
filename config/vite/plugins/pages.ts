@@ -8,6 +8,6 @@ export const ConfigPagesPlugin = () => {
     pagesDir: [{ dir: 'src/pages', baseRoute: '' }],
     extensions: ['vue', 'md'],
     exclude: ['**/components/*.vue'],
-    nuxtStyle: true,
+    // nuxtStyle: true,
   });
 };

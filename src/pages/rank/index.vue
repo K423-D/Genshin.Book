@@ -6,10 +6,12 @@
   import useRank from '/@/hooks/useRank';
   import { Search } from '@element-plus/icons-vue';
   import { ElMessage } from 'element-plus';
+  import { useAppStore } from '/@/store';
 
   document.title = `深渊数据排行 | Genshin.Book`;
 
   const genshinItem = useGenshinItem();
+  const appStore = useAppStore();
 
   const uid = ref<number | string>();
   const rank = useRank();
@@ -22,8 +24,8 @@
 
     const t = localStorage.getItem('rank-cd');
     const now = new Date().getTime();
-    if (parseInt(`${t}`) + 30 * 1000 > now) {
-      ElMessage.error('30s内只能查询一次哦~');
+    if (parseInt(`${t}`) + appStore.rankQueryCd * 1000 > now) {
+      ElMessage.error(`${appStore.rankQueryCd}秒内只能查询一次哦~`);
     } else {
       localStorage.removeItem('rank-cd');
       rank.fetchRank(uid);
@@ -47,7 +49,12 @@
     </main>
     <div class="flex justify-center items-center py-6">
       <div>
-        <el-input v-model="uid" placeholder="请输入uid" class="input-with-select">
+        <el-input
+          v-model="uid"
+          placeholder="请输入uid"
+          @keyup.enter.native="queryRank(uid)"
+          class="input-with-select"
+        >
           <template #append>
             <el-button @click="queryRank(uid)" :icon="Search" />
           </template>

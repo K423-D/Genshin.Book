@@ -18,6 +18,10 @@ const router = createRouter({
 
 router.beforeEach(async (_to, _from, next) => {
   NProgress.start();
+  if (import.meta.env.MODE == 'development') {
+    // console.log(_to);
+  }
+
   if (_to.path == '/' && _to.query.refreshToken === '1') {
     const token = getToken();
     const appStore = useAppStore();

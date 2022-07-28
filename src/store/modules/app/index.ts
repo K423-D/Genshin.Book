@@ -16,6 +16,7 @@ export const useAppStore = defineStore(
       theme: 'dark',
       projectName: 'Genshin.Book',
       accessToken: '',
+      rankQueryCd: 20,
     }),
     getters: {},
     actions: {
