@@ -52,6 +52,8 @@ const characterMap = {
   10000064: { star: 4 },
   10000065: { star: 4 },
   10000066: { star: 5 },
+  10000067: { star: 4 },
+  10000069: { star: 5 },
 };
 // 武器id映射
 const weaponMap = {
@@ -189,6 +191,7 @@ const weaponMap = {
   15411: { star: 4 },
   15508: { star: 5 },
   11416: { star: 4 },
+  15511: { star: 5 },
 };
 // 圣遗物id映射
 const reliquariesMap = {
@@ -227,6 +230,7 @@ const reliquariesMap = {
   2100041: { star: 4 },
   2150231: { star: 5 },
   2150241: { star: 5 },
+  2150251: { star: 5 },
 };
 const ITEM_MAP = { characterMap, weaponMap, reliquariesMap };
 export default ITEM_MAP;
