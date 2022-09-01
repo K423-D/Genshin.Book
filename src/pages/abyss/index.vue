@@ -64,7 +64,7 @@
         <h1
           class="relative mb-4 text-xl tracking-tight font-blimone sm:text-2xl lg:text-3xl text-slate-900 dark:text-slate-200 md:mt-10 lg:mt-10 xl:mt-10 2xl:mt-10"
         >
-          <span class="border-b-2 border-b-purple-600">角色出场数据</span>
+          <span class="border-b-2 border-b-purple-600">角色出场率数据</span>
         </h1>
       </div>
     </main>

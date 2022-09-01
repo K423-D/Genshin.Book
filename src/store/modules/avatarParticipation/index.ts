@@ -20,7 +20,8 @@ export const useAvatarParticipationStore = defineStore('avatarParticipation', {
       res.map((item) => {
         item.avatarUsage.sort((a, b) => b.value - a.value);
         item.avatarUsage.map((el) => {
-          el.value = keepTwoDecimalFull(el.value * 100 * 8);
+          el.value = keepTwoDecimalFull(el.value * 100);
+          // el.value = keepTwoDecimalFull(el.value * 100 * 8);
         });
       });
       this.setAvatarParticipation(res);
