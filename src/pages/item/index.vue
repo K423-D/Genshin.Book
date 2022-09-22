@@ -58,7 +58,12 @@
           :key="index * 1.1"
           class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8"
         >
-          <ItemBox :name="item.name" :url="item.url" :star="item.star" />
+          <ItemBox
+            :name="item.name"
+            :url="item.url"
+            :star="item.star"
+            @click="$router.push(`/item/weapon/${item.id}`)"
+          />
         </li>
       </ul>
     </article>
@@ -81,7 +86,12 @@
           :key="index * 1.1"
           class="px-3 pt-4 md:px-4 sm:pt-5 md:pb-8"
         >
-          <ItemBox :name="item.name" :url="item.url" :star="item.star" />
+          <ItemBox
+            :name="item.name"
+            :url="item.url"
+            :star="item.star"
+            @click="$router.push(`/item/reliquary/${item.id}`)"
+          />
         </li>
       </ul>
     </article>
